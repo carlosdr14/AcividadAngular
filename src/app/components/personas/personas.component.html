@@ -64,6 +64,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
                         <th scope="col">correo</th>
+                        <th scope="col">telefono</th>
                         <th scope="col">editar</th>
                         <th scope="col">eliminar</th>
                     </tr>
@@ -82,6 +83,7 @@
                         <td>Mark</td>
                         <td>Otto</td>
                         <td>@mdo</td>
+                        <td>8715495043</td>
                         <td><button type="button" class="btn btn-primary">Editar</button></td>
                         <td><button type="button" class="btn btn-danger">Eliminar</button></td>
                     </tr>
@@ -90,6 +92,7 @@
                         <td>Jacob</td>
                         <td>Thornton</td>
                         <td>@fat</td>
+                        <td>8715495043</td>
                         <td><button type="button" class="btn btn-primary" (click)="abrirModal()">Editar</button>
                         </td>
                         <td><button type="button" class="btn btn-danger" (click)="EliminarP()">Eliminar</button></td>
@@ -115,13 +118,26 @@
             <!-- Email input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="email">correo</label>
-                <input type="email" id="email" class="form-control" placeholder="Actualiza tu Email" />
+                <input type="email" id="email" class="form-control" placeholder="Actualizar Email" required />
             </div>
 
             <!-- nombre input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="name">Nombre</label>
-                <input type="text" id="name" class="form-control" placeholder="actualiza tu nombre" />
+                <input type="text" id="name" class="form-control" placeholder="actualizar nombre" required/>
+            </div>
+
+            <!-- apellido input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="name">apellido</label>
+                <input type="text" id="name" class="form-control" placeholder="actualizar apellido" required/>
+            </div>
+
+            <!-- telefono input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="name">telefono</label>
+                <input type="text" id="name" class="form-control" placeholder="actualizar numero de telefono" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+
             </div>
         </form>
     </div>

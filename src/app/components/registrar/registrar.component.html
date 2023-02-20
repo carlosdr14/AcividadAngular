@@ -8,10 +8,16 @@
     <hr>
     <label id="icon" for="name"><i class="icon-envelope "></i></label>
     <input type="text" name="name" id="name" placeholder="Email" required />
+
     <label id="icon" for="name"><i class="icon-user"></i></label>
     <input type="text" name="name" id="name" placeholder="Nombre" required />
+
+    <label  id="icon" for="name"><i class="icon-phone "></i></label>
+    <input type="text" id="phone" name="phone" maxlength="10" placeholder="Numero de telefono" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+
     <label id="icon" for="name"><i class="icon-shield"></i></label>
     <input type="password" name="name" id="name" placeholder="Password" required />
+
     <label id="icon" for="name"><i class="icon-shield"></i></label>
     <input type="password" name="name" id="name" placeholder="Password-confirmation" required />
     <hr>
@@ -30,13 +36,14 @@
   <div class="modal-body">
     <form>
       <div class="form-outline mb-4">
-        <label class="form-label" for="name">Por favor ingresa el codigo que ha sido enviado a tu correo electronico</label>
+        <label class="form-label" for="name">Por favor ingresa el codigo que ha sido enviado a tu correo
+          electronico</label>
         <input type="text" id="name" class="form-control" />
       </div>
     </form>
   </div>
   <div class="modal-footer flex-center">
-    <button type="submit" class="btn btn-outline-dark">confirmar</button>
+    <button type="submit" class="btn btn-outline-dark" routerLink="/inicio" (click)="modal.close()">confirmar</button>
   </div>
 </ng-template>
 <!-- fin del modal -->
