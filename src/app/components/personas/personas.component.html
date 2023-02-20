@@ -1,0 +1,156 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+        <!-- Navbar brand -->
+        <a class="navbar-brand">Menu Carkis</a>
+
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+            data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <i class="fas fa-bars text-light"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto d-flex flex-row mt-3 mt-lg-0">
+                <li class="nav-item text-center mx-2 mx-lg-1">
+                    <a class="nav-link" outerLinkActive="active-link" routerLink="/personas">
+                        <div>
+                            <i class="fas fa-user fa-lg mb-1"></i>
+                        </div>
+                       personas
+                    </a>
+                </li>
+                <li class="nav-item text-center mx-2 mx-lg-1">
+                    <a class="nav-link"outerLinkActive="active-link" routerLink="/cars">
+                        <div>
+                            <i class="fas fa-car fa-lg mb-1"></i>
+                        </div>
+                        Cars
+                    </a>
+                </li>
+                <li class="nav-item text-center mx-2 mx-lg-1">
+                    <a class="nav-link" outerLinkActive="active-link" routerLink="/bikes">
+                        <div>
+                            <i class="fas fa-motorcycle fa-lg mb-1"></i>
+                        </div>
+                        Bikes
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+<!-- Navbar -->
+
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+
+        </div>
+        <div class="col-8">
+            <br>
+            <h1><b>Personas</b></h1>
+            <hr>
+            <br>
+            <table class="table table-dark table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">correo</th>
+                        <th scope="col">editar</th>
+                        <th scope="col">eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr *ngFor="let persona of personas">
+                        <th scope="row">{{persona.id}}</th>
+                        <td>{{persona.nombre}}</td>
+                        <td>{{persona.apellido}}</td>
+                        <td>{{persona.correo}}</td>
+                        <td><button type="button" class="btn btn-primary">Editar</button></td>
+                        <td><button type="button" class="btn btn-danger">Eliminar</button></td>
+                    </tr> -->
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td><button type="button" class="btn btn-primary">Editar</button></td>
+                        <td><button type="button" class="btn btn-danger">Eliminar</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td><button type="button" class="btn btn-primary" (click)="abrirModal()">Editar</button>
+                        </td>
+                        <td><button type="button" class="btn btn-danger" (click)="EliminarP()">Eliminar</button></td>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+</div>
+
+<!-- modal para actualizar datos  -->
+<ng-template #contenido let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Editar datos</h4>
+        <button class="close" type="button" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="email">correo</label>
+                <input type="email" id="email" class="form-control" placeholder="Actualiza tu Email" />
+            </div>
+
+            <!-- nombre input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="name">Nombre</label>
+                <input type="text" id="name" class="form-control" placeholder="actualiza tu nombre" />
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-outline-dark" type="button" (click)="modal.close()">Cerrar</button>
+        <button type="submit" class="btn btn-primary btn-block">actualizar</button>
+    </div>
+</ng-template>
+<!-- fin del modal -->
+
+
+<!-- modal para eliminar datos -->
+<ng-template #eliminar let-modal>
+    
+      <div class="modal-content text-center mb-">
+  
+        <div class="modal-header x d-flex justify-content-center">
+          <h1 class="heading" id="color-h3">estas seguro?</h1>
+        </div>
+
+        <div class="modal-body">
+            <h3>esta accion no se podra deshacer</h3>
+        </div>
+
+        <div class="modal-footer flex-center">
+          <a href="" class="btn  btn-outline-danger">Yes</a>
+          <a type="button" class="btn  btn-danger waves-effect" (click)="modal.close()">No</a>
+        </div>
+      </div>
+
+</ng-template>
+<!-- fin del modal -->
