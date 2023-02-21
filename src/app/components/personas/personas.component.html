@@ -62,37 +62,26 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">correo</th>
-                        <th scope="col">telefono</th>
-                        <th scope="col">editar</th>
-                        <th scope="col">eliminar</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Contraseña</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col">Activo</th>
+                        <th scope="col">Código de activación</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr *ngFor="let persona of personas">
-                        <th scope="row">{{persona.id}}</th>
-                        <td>{{persona.nombre}}</td>
-                        <td>{{persona.apellido}}</td>
-                        <td>{{persona.correo}}</td>
-                        <td><button type="button" class="btn btn-primary">Editar</button></td>
-                        <td><button type="button" class="btn btn-danger">Eliminar</button></td>
-                    </tr> -->
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>8715495043</td>
-                        <td><button type="button" class="btn btn-primary">Editar</button></td>
-                        <td><button type="button" class="btn btn-danger">Eliminar</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>8715495043</td>
+                    <tr *ngFor="let persona of personas">
+                        <td>{{ persona.id }}</td>
+                        <td>{{ persona.name }}</td>
+                        <td>{{ persona.email }}</td>
+                        <td>{{ persona.phone }}</td>
+                        <td>{{ persona.password }}</td>
+                        <td>{{ persona.role }}</td>
+                        <td>{{ persona.active }}</td>
+                        <td>{{ persona.activation_code }}</td>
                         <td><button type="button" class="btn btn-primary" (click)="abrirModal()">Editar</button>
                         </td>
                         <td><button type="button" class="btn btn-danger" (click)="EliminarP()">Eliminar</button></td>

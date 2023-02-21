@@ -15,13 +15,13 @@ export class LoginService {
     } else {
       console.error('El backend devolvió el código ${error.status}, el cuerpo era:', error.error)
     }
-    return throwError(() => new Error('Algo malo sucedió; por favor, inténtelo de nuevo más tarde.'));
+    return throwError(() => new Error('Algo malo sucedió; por favor, inténtelo de nuevo más tarde.'));
   }
 
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string): Observable<boolean> {
-    return this.http.post<{ token: string }>(this.urlapi, { username, password })
+  login(email: string, password: string): Observable<boolean> {
+    return this.http.post<{ token: string }>(this.urlapi, { email, password })
       .pipe(
         tap(res => {
           if (res.token) {

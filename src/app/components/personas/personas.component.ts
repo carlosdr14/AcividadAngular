@@ -1,9 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PersonaService } from 'src/app/services/Personas/persona.service';
 import { PersonaM } from 'src/app/Models/persona.model';
 import { Location } from '@angular/common';
+
 
 @Component({
     selector: 'app-personas',
@@ -16,6 +17,19 @@ export class PersonasComponent {
 
     @ViewChild('contenido') contenido: any;
     @ViewChild('eliminar') eliminar: any;
+
+    personas!:
+        {
+            id: number,
+            name: string,
+            email: string,
+            phone: string,
+            password: string,
+            role: string,
+            active: boolean,
+            activation_code: string,
+        }[];
+
 
     constructor(private modalService: NgbModal, private personaService: PersonaService, private fb: FormBuilder,
         private location: Location) {
