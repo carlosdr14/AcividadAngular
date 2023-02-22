@@ -15,6 +15,8 @@ export class LoginService {
   private obtenerpersona = this.urlapi + "/clients/{id}"
   private modificarPersona = this.urlapi + "/clients/{id}"
   private eliminarPersona = this.urlapi + "/clients/{id}"
+  private loggedIn: boolean = false;
+  
   private handleError(error: HttpErrorResponse) {
     if (error.status === 400) {
       console.error('An error occurred:', error.error);
@@ -38,7 +40,9 @@ export class LoginService {
   }
 
   logout(): void {
-    localStorage.removeItem('token'); // Eliminamos el token del localStorage al cerrar sesión
+    // aquí iría la lógica para cerrar la sesión del usuario
+    // se establece el valor de loggedIn a false
+    this.loggedIn = false;
   }
 
   isLoggedIn(): boolean {
