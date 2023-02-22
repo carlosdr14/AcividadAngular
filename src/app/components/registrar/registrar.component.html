@@ -1,11 +1,10 @@
-
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet'
   type='text/css'>
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
 
 <div class="testbox">
   <h1>Registrate</h1>
-  <form (ngSubmit)="abrirC()" #form="ngForm">
+  <form (ngSubmit)="validarFormulario(form); abrirC()" #form="ngForm">
     <hr>
     <label id="icon" for="name"><i class="icon-envelope "></i></label>
     <input type="text" name="email" id="email" placeholder="Email" required [(ngModel)]="email" />
@@ -13,14 +12,16 @@
     <label id="icon" for="name"><i class="icon-user"></i></label>
     <input type="text" name="name" id="name" placeholder="Nombre" required [(ngModel)]="name" />
 
-    <label  id="icon" for="name"><i class="icon-phone "></i></label>
-    <input type="text" id="phone" name="phone" maxlength="10" [(ngModel)]="phone" placeholder="Numero de telefono" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+    <label id="icon" for="name"><i class="icon-phone "></i></label>
+    <input type="text" id="phone" name="phone" maxlength="10" [(ngModel)]="phone" placeholder="Numero de telefono"
+      required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
 
     <label id="icon" for="name"><i class="icon-shield"></i></label>
     <input type="password" name="password" id="password" [(ngModel)]="password" placeholder="Password" required />
 
     <label id="icon" for="name"><i class="icon-shield"></i></label>
-    <input type="password" name="Password-confirmation" [(ngModel)]="password_confirmation" id="Password-confirmation" placeholder="Password-confirmation" required />
+    <input type="password" name="Password-confirmation" [(ngModel)]="password_confirmation" id="Password-confirmation"
+      placeholder="Password-confirmation" required />
     <hr>
     <p>Al hacer clic en Registrarse, acepta nuestros<a href="#"> terminos y condiciones</a>.</p>
     <button type="submit" class="button">Registrarme</button>
@@ -39,12 +40,14 @@
       <div class="form-outline mb-4">
         <label class="form-label" for="name">Por favor ingresa el codigo que ha sido enviado a tu correo
           electronico</label>
-        <input type="text" id="name" class="form-control" [(ngModel)]="codigoo" />
+        <input type="text" id="name" class="form-control" [(ngModel)]="activation_code" />
       </div>
+      <div *ngIf="isValid()" class="text-danger">{{ isValid() }}</div>
     </form>
   </div>
   <div class="modal-footer flex-center">
-    <button type="submit" class="btn btn-outline-dark" routerLink="/inicio" (click)="modal.close()">confirmar</button>
+    <button type="submit" class="btn btn-outline-dark" (click)="modal.close()"
+    [disabled]="activation_code=== ''" [disabled]="isValid()">Confirmar</button>
   </div>
 </ng-template>
 <!-- fin del modal -->
