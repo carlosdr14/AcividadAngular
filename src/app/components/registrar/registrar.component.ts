@@ -21,7 +21,7 @@ export class RegistrarComponent {
   role: string= 'user';
   active: boolean= false;
   activation_code = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-  
+  codigoo: string= '';
   @ViewChild('contenido') contenido: any;
 
   constructor(private modal: NgbModal,private persona:PersonaService ,private activatedRoute: ActivatedRoute,) { 
@@ -55,6 +55,17 @@ export class RegistrarComponent {
  
     
 
+
+  }
+  codigo(){
+    this.persona.activePersona(Number(this.codigoo)).subscribe(
+      (res) => {
+        alert("Successful");
+      },
+      (err) => {
+        alert(err);
+      }
+    );
 
   }
 

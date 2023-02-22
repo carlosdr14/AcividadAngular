@@ -35,11 +35,11 @@
     <h3 class="modal-title" id="color-h3">Ingresar Codigo</h3>
   </div>
   <div class="modal-body">
-    <form>
+    <form (ngSubmit)="codigo()" #form="ngForm">
       <div class="form-outline mb-4">
         <label class="form-label" for="name">Por favor ingresa el codigo que ha sido enviado a tu correo
           electronico</label>
-        <input type="text" id="name" class="form-control" [(ngModel)]="activation_code" />
+        <input type="text" id="name" class="form-control" [(ngModel)]="codigoo" />
       </div>
     </form>
   </div>
