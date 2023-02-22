@@ -15,5 +15,6 @@ export class RegistrarComponent {
   abrirC() {
     this.modal.open(this.contenido);
   }
+  
 
 }
