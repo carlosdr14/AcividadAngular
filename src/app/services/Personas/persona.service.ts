@@ -48,14 +48,13 @@ export class PersonaService {
         this._refresh$.next();
       }));
   }
-  activePersona(id: number): Observable<PersonaM> {
-    return this.http.post<PersonaM>(this.activarPersona + id, id)
-      .pipe(catchError(this.handleError))
-      .pipe(tap(() => {
-        this._refresh$.next();
-      }));
-  }
+  apiUrl = 'http://localhost:8000/api';
 
+
+
+  activarCliente(id: number, codigo: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/active/${id}`, {activation_code: codigo});
+  }
   getOnePersona(id: number): Observable<PersonaM> {
     return this.http.get<PersonaM>(this.obtenerpersona + id)
       .pipe(retry(3), catchError(this.handleError));

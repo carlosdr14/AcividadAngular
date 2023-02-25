@@ -35,7 +35,7 @@
     <h3 class="modal-title" id="color-h3">Ingresar Codigo</h3>
   </div>
   <div class="modal-body">
-    <form>
+    <form (ngSubmit)="activar()" #form="ngForm">
       <div class="form-outline mb-4">
         <label class="form-label" for="name">Por favor ingresa el codigo que ha sido enviado a tu correo
           electronico</label>
@@ -44,7 +44,7 @@
     </form>
   </div>
   <div class="modal-footer flex-center">
-    <button type="submit" class="btn btn-outline-dark" routerLink="/inicio" (click)="modal.close()">confirmar</button>
+    <button type="submit" class="btn btn-outline-dark"  (click)="modal.close()">confirmar</button>
   </div>
 </ng-template>
 <!-- fin del modal -->

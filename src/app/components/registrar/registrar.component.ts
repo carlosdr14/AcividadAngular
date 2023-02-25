@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./registrar.component.css']
 })
 export class RegistrarComponent {
-
+  public id: number=0;
   email: string = '';
   name: string = '';
   phone: string = '';
@@ -22,11 +22,11 @@ export class RegistrarComponent {
   role: string = 'user';
   active: boolean = false;
   activation_code = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-  
+  codigo: string = '';
   @ViewChild('contenido') contenido: any;
 
   constructor(private modal: NgbModal, private persona: PersonaService, private activatedRoute: ActivatedRoute,) {
-
+    
   }
 
   abrirC() {
@@ -52,12 +52,30 @@ export class RegistrarComponent {
     );
 
     this.modal.open(this.contenido);
-    
+
+
  
     
 
 
   }
+  activar() {
+    console.log('codigo',this.activation_code);
+    console.log(this.id);
+    this.persona.activarCliente(this.id,  this.activation_code.toString()).subscribe(
+      
+      (response) => {
+        // Manejar la respuesta de éxito de la API aquí
+        
+        console.log(response);
+      },
+      (error) => {
+        // Manejar el error de la API aquí
+        console.log(error);
+      }
+    );
+  }
+  
   
 
 }
