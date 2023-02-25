@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
+import { LoginService } from 'src/app/services/Login/log.service';
 
 @Component({
   selector: 'app-iniciarsesion',
@@ -10,15 +11,19 @@ import { Route, Router } from '@angular/router';
 export class IniciarsesionComponent {
   email: string = '';
   password: string = '';
-  active: number = 1;
+  active= 0;
   loginForm!: NgForm;
 
-  constructor(private router: Router) { 
-  }
+  constructor(private router: Router, private authService: LoginService) { }
 
-  onSubmit(form: NgForm): void {
-    console.log(form);
-    this.router.navigate(['/menu']);
+  onSubmit() {
+    if (this.authService.login(this.email, this.password)) {
+      // Si el inicio de sesión es exitoso, redirigir a la página de inicio.
+      this.router.navigate(['/inicio']);
+    } else {
+      // Si el inicio de sesión falla, mostrar un mensaje de error.
+      alert('El nombre de usuario o la contraseña son incorrectos.');
+    }
   }
   navegar() {
     this.router.navigate(['/registrar']);

@@ -8,44 +8,40 @@ import { login } from 'src/app/Models/login.model';
   providedIn: 'root'
 })
 export class LoginService {
-  urlapi = environment.URL_API;
-  private _refresh$ = new Subject<void>();
-  private obtenerpersonas = this.urlapi + "/clients"
-  private logg = this.urlapi + "/login"
-  private obtenerpersona = this.urlapi + "/clients/{id}"
-  private modificarPersona = this.urlapi + "/clients/{id}"
-  private eliminarPersona = this.urlapi + "/clients/{id}"
-  private loggedIn: boolean = false;
-  
-  private handleError(error: HttpErrorResponse) {
-    if (error.status === 400) {
-      console.error('An error occurred:', error.error);
-    } else {
-      console.error('El backend devolvió el código ${error.status}, el cuerpo era:', error.error)
-    }
-    return throwError(() => new Error('Algo malo sucedió; por favor, inténtelo de nuevo más tarde.'));
+
+  private token;
+
+  constructor() {
+    // Aquí podrías inicializar el token desde el almacenamiento local o una cookie, si existe.
+    this.token = localStorage.getItem('token');
   }
 
-  constructor(private http: HttpClient) { }
-  login(login:login): Observable<boolean> {
-    return this.http.post<{ token: string }>(this.logg,login)
-      .pipe(
-        tap(res => {
-          if (res.token) {
-            localStorage.setItem('token', res.token); // Guardamos el token en el localStorage
-          }
-        }),
-        map(res => !!res.token) // Devolvemos un booleano que indica si el usuario se ha autenticado o no
-      );
+  login(username: string, password: string): boolean {
+    // Aquí podrías realizar una llamada a un servicio de autenticación para obtener el token.
+    // En este ejemplo, se asume que el token es válido si el usuario es "admin" y la contraseña es "password".
+    if (username === 'admin' && password === 'password') {
+      this.token = 'fake-token';
+      localStorage.setItem('token', this.token);
+      return true;
+    } else {
+      return false;
+    }
   }
 
   logout(): void {
-    // aquí iría la lógica para cerrar la sesión del usuario
-    // se establece el valor de loggedIn a false
-    this.loggedIn = false;
+    // Aquí deberías eliminar el token del almacenamiento local o la cookie.
+    this.token = null;
+    localStorage.removeItem('token');
   }
 
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem('token'); // Comprobamos si el usuario ha iniciado sesión
+  hasToken(): boolean {
+    // Aquí simplemente verificamos si el token existe.
+    return !!this.token;
   }
+
+  getToken(): string {
+    // Aquí podrías devolver el token almacenado.
+    return this.token= '';
+  }
+
 }
