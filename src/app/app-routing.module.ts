@@ -13,22 +13,18 @@ import { EliminarpersonaComponent } from './components/eliminarpersona/eliminarp
 import { EliminarbikerComponent } from './components/eliminarbiker/eliminarbiker.component';
 import { EliminarcarComponent } from './components/eliminarcar/eliminarcar.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { LoginGuard } from './guards/login/login.guard';
+import { AuthGuard } from './guards/Usuario/usuario-activo.guard';
 
 //rutas de navegacion
 const routes: Routes = [
   {path:'', redirectTo:'inicio', pathMatch:'full'},
-  {path:'inicio', component:IniciarsesionComponent},
-  {path:'registrar', component:RegistrarComponent},
-  {path:'personas', component: PersonasComponent},
+  {path:'inicio', component:IniciarsesionComponent, canActivate:[LoginGuard]},
+  {path:'registrar', component:RegistrarComponent, canActivate:[LoginGuard]},
+  {path:'personas', component: PersonasComponent, canActivate:[AuthGuard]},
   {path:'bikes',component:BikesComponent},
   {path:'cars', component: CarsComponent},
-  {path:'editarpersona', component: EditarpersonaComponent},
-  {path:'editarbikes', component: EditarbikerComponent},
-  {path:'editarcars', component: EditarcarComponent},
-  {path:'eliminarpersona', component: EliminarpersonaComponent},
-  {path:'eliminarbikes', component: EliminarbikerComponent},
-  {path:'eliminarcars', component: EliminarcarComponent},
-  {path:'menu', component: MenuComponent},
+  {path:'menu', component: MenuComponent, canActivate:[AuthGuard]},
   {path:'notfound', component: NotfoundComponent},
   {path:'**', redirectTo:'notfound', pathMatch:'full'}
 ];
