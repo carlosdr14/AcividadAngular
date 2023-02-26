@@ -19,7 +19,7 @@ export class IniciarsesionComponent {
   onSubmit() {
     if (this.authService.login(this.email, this.password)) {
       // Si el inicio de sesión es exitoso, redirigir a la página de inicio.
-      this.router.navigate(['/inicio']);
+      this.router.navigate(['/menu']);
     } else {
       // Si el inicio de sesión falla, mostrar un mensaje de error.
       alert('El nombre de usuario o la contraseña son incorrectos.');
