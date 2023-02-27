@@ -10,11 +10,11 @@ import { environment } from 'src/environments/enviroment.development';
 export class BikerService {
   urlapi = environment.URL_API;
   private _refresh$ = new Subject<void>();
-  private obtenerbiker = this.urlapi + "/"
-  private crearBiker = this.urlapi + "/"
-  private obtenerbikerid = this.urlapi + "/"
-  private modificarBiker = this.urlapi + "/"
-  private eliminarBiker = this.urlapi + "/"
+  private obtenerbiker = this.urlapi + "/bikes"
+  private crearBiker = this.urlapi + "/bikes"
+  private obtenerbikerid = this.urlapi + "/bikes/{id}"
+  private modificarBiker = this.urlapi + "/bikes/{id}"
+  private eliminarBiker = this.urlapi + "/bikes/{id}"
   private obtenerbikeridpersona = this.urlapi + "/"
 
 

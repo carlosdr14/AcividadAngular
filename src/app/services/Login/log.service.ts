@@ -13,10 +13,11 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   
-  login(email: string, password: string): Observable<any> {
-    const body = { email, password };
-    return this.http.post(`${this.apiUrl}/login`, body);
-  }
+  login(login:login): Observable<any> {
+    
+    return this.http.post(`${this.apiUrl}/login`, login);
+  };
+  
 
   logout() {
     localStorage.removeItem('token');

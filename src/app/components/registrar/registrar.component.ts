@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./registrar.component.css']
 })
 export class RegistrarComponent {
-  public id: number=0;
+  id: number = 0;
   email: string = '';
   name: string = '';
   phone: string = '';
@@ -23,15 +23,18 @@ export class RegistrarComponent {
   active: boolean = false;
   activation_code = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
   codigo: string = '';
+  
   @ViewChild('contenido') contenido: any;
 
   constructor(private modal: NgbModal, private persona: PersonaService, private activatedRoute: ActivatedRoute,) {
-    
+    const id = this.activatedRoute.snapshot.paramMap.get('id') as string;
+
   }
 
   abrirC() {
+    id: this.id;
+   const Email=  this.email;
     const form = {
-
       email: this.email,
       name: this.name,
       phone: this.phone,
@@ -41,7 +44,8 @@ export class RegistrarComponent {
       active: this.active,
       activation_code: this.activation_code,
     }
-    console.log(form);
+    console.log("formulario",form);
+    
     this.persona.addPersona(form).subscribe(
       (res) => {
         alert("Successful");
@@ -50,6 +54,18 @@ export class RegistrarComponent {
         alert(err);
       }
     );
+
+    this.persona.getOne(Email).subscribe(
+      (res) => {
+        
+        this.id = res.id;
+        console.log("id", this.id);
+      },
+      (err) => {
+        alert(err);
+      }
+    );
+
 
     this.modal.open(this.contenido);
 
@@ -60,20 +76,22 @@ export class RegistrarComponent {
 
   }
   activar() {
-    console.log('codigo',this.activation_code);
-    console.log(this.id);
-    this.persona.activarCliente(this.id,  this.activation_code.toString()).subscribe(
-      
-      (response) => {
-        // Manejar la respuesta de éxito de la API aquí
-        
-        console.log(response);
+
+    codigo: this.codigo;
+    
+    console.log("codigo", this.codigo);
+    console.log("id", this.id);
+    this.persona.activarCliente(this.id,Number( this.codigo)).subscribe(
+      (res) => {
+        alert("Successful");
       },
-      (error) => {
-        // Manejar el error de la API aquí
-        console.log(error);
+      (err) => {
+        alert(err);
       }
     );
+
+
+  
   }
   
   

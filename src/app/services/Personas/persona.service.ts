@@ -41,6 +41,7 @@ export class PersonaService {
     .pipe(retry(3), catchError(this.handleError))
   }
 
+
   addPersona(persona: PersonaM): Observable<PersonaM> {
     return this.http.post<PersonaM>(this.crearPersona, persona)
       .pipe(catchError(this.handleError))
@@ -52,12 +53,11 @@ export class PersonaService {
 
 
 
-  activarCliente(id: number, codigo: string): Observable<any> {
+  activarCliente(id: number, codigo: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/active/${id}`, {activation_code: codigo});
   }
-  getOnePersona(id: number): Observable<PersonaM> {
-    return this.http.get<PersonaM>(this.obtenerpersona + id)
-      .pipe(retry(3), catchError(this.handleError));
+  getOne( email: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/getuser`, {email: email});
   }
 
   updatePersona(persona: PersonaM): Observable<PersonaM> {

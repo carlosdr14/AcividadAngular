@@ -41,13 +41,12 @@
           <div class="form-group mb-3">
             <label for="password" class="sr-only">Password</label>
             <input type="password" name="password" id="password" class="form-control" placeholder="Password"
-              [(ngModel)]="password" required minlength="8">
+              [(ngModel)]="password" >
             <div
               *ngIf="loginForm && loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)"
               class="text-danger">
               <div *ngIf="loginForm.controls'password'['required']">La contraseña es requerida.</div>
-              <div *ngIf="loginForm.controls'password'['minlength']">La contraseña debe tener al menos 8 caracteres.
-              </div>
+            
             </div>
           </div>
           <div class="d-flex justify-content-between align-items-center mb-5">

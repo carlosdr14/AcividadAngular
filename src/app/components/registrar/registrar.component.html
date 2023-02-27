@@ -5,7 +5,7 @@
 
 <div class="testbox">
   <h1>Registrate</h1>
-  <form (ngSubmit)="abrirC()" #form="ngForm">
+  <form (ngSubmit)="abrirC()" #form="ngForm" [(ngModel)]="id">
     <hr>
     <label id="icon" for="name"><i class="icon-envelope "></i></label>
     <input type="text" name="email" id="email" placeholder="Email" required [(ngModel)]="email" />
@@ -39,12 +39,12 @@
       <div class="form-outline mb-4">
         <label class="form-label" for="name">Por favor ingresa el codigo que ha sido enviado a tu correo
           electronico</label>
-        <input type="text" id="name" class="form-control" [(ngModel)]="activation_code" />
+        <input type="text" id="activation_code"  name="activation_code" class="form-control" [(ngModel)]="codigo" />
       </div>
     </form>
   </div>
   <div class="modal-footer flex-center">
-    <button type="submit" class="btn btn-outline-dark"  (click)="modal.close()">confirmar</button>
+    <button type="submit" class="btn btn-outline-dark"  (click)="modal.close()" routerLink="/inicio">confirmar</button>
   </div>
 </ng-template>
 <!-- fin del modal -->
