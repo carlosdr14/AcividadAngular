@@ -4,6 +4,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PersonaService } from 'src/app/services/Personas/persona.service';
 import { PersonaM } from 'src/app/Models/persona.model';
 import { Location } from '@angular/common';
+import { LoginService } from 'src/app/services/Login/log.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -32,7 +34,7 @@ export class PersonasComponent {
 
 
     constructor(private modalService: NgbModal, private personaService: PersonaService, private fb: FormBuilder,
-        private location: Location) {
+        private location: Location, private loginservice:LoginService, private router:Router) {
         this.form = this.fb.group({
             name: ['', Validators.required],
             email: ['', Validators.required],
@@ -59,4 +61,9 @@ export class PersonasComponent {
     EliminarP() {
         this.modalService.open(this.eliminar);
     }
+    
+  cerrarSesion() {
+    this.loginservice.logout();
+    this.router.navigate(['/inicio']);
+  }
 }
