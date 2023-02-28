@@ -162,7 +162,7 @@
 
       <br>
       <br>
-      <button *ngIf="isAdmin" routerLink="/editarcar">Registrar cars</button>
+      <button *ngIf="userRole === 1 || userRole === 2" routerLink="/editarcar">Registrar cars</button>
 
 </ng-template>
 <!-- fin del modal -->

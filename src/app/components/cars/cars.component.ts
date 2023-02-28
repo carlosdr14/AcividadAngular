@@ -10,29 +10,27 @@ import { AuthService } from 'src/app/services/VerificacionRoles/roles.service';
   styleUrls: ['./cars.component.css']
 })
 export class CarsComponent {
-isAdmin = false;
-@ViewChild('contenido') contenido: any;
+  userRole?: number;
+  @ViewChild('contenido') contenido: any;
 
-@ViewChild('eliminar') eliminar:any;
+  @ViewChild('eliminar') eliminar: any;
 
-constructor(private modal: NgbModal, private loginservice:LoginService, private router:Router, private authService: AuthService) {
-  authService.getUserRole().then(role => {
-    this.isAdmin = (role === "admin");
-  });
-}
+  constructor(private modal: NgbModal, private loginservice: LoginService, private router: Router, private authService: AuthService) {
+  }
 
-EditarC() {
-this.modal.open(this.contenido);
-}
+  EditarC() {
+    this.modal.open(this.contenido);
+  }
 
-EliminarC() {
-this.modal.open(this.eliminar);
-}
+  EliminarC() {
+    this.modal.open(this.eliminar);
+  }
 
-cerrarSesion() {
-  this.loginservice.logout();
-  this.router.navigate(['/inicio']);
-}
+  cerrarSesion() {
+    this.loginservice.logout();
+    this.router.navigate(['/inicio']);
+  }
 
 
 }
+
