@@ -20,11 +20,11 @@
                         <div>
                             <i class="fas fa-user fa-lg mb-1"></i>
                         </div>
-                       personas
+                        personas
                     </a>
                 </li>
                 <li class="nav-item text-center mx-2 mx-lg-1">
-                    <a class="nav-link"outerLinkActive="active-link" routerLink="/cars">
+                    <a class="nav-link" outerLinkActive="active-link" routerLink="/cars">
                         <div>
                             <i class="fas fa-car fa-lg mb-1"></i>
                         </div>
@@ -39,19 +39,13 @@
                         Bikes
                     </a>
                 </li>
-                
+
             </ul>
         </div>
 
-        <form action="">
-            <li class="nav-item text-center mx-2 mx-lg-1">
-                <a class="nav-link" outerLinkActive="active-link" (click)="cerrarSesion()">
-                    <div>
-                        <i class="fas fa-sign-out-alt fa-lg mb-1"></i>
-                    </div>
-                    Cerrar Sesion
-                </a>
-            </li>
+       
+        <form class="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0">
+            <button class="btn btn-success" type="button" data-mdb-ripple-color="dark" (click)="cerrarSesion()">cerrar Sesion </button>
         </form>
 
     </div>
@@ -118,7 +112,7 @@
         </button>
     </div>
     <div class="modal-body">
-        <form >
+        <form>
             <!-- marca -->
             <div class="form-outline mb-4">
                 <label for="form-label">Marca</label>
@@ -147,18 +141,21 @@
         <button type="submit" class="btn btn-primary btn-block">actualizar</button>
     </div>
 </ng-template>
+<div  class="left-div">
+    <button type="submit" class="btn btn-warning float-right custom-margin" routerLink="/editarcar">Registrar
+        carros</button>
+</div>
 <!-- fin del modal -->
 
-<button type="submit" class="btn btn-warning" routerLink="/editarcar">Registrar carros</button>
 
 
 <!-- modal para eliminar datos -->
 <ng-template #eliminar let-modal>
-    
-      <div class="modal-content text-center mb-">
-  
+
+    <div class="modal-content text-center mb-">
+
         <div class="modal-header x d-flex justify-content-center">
-          <h1 class="heading" id="color-h3">estas seguro?</h1>
+            <h1 class="heading" id="color-h3">estas seguro?</h1>
         </div>
 
         <div class="modal-body">
@@ -166,10 +163,10 @@
         </div>
 
         <div class="modal-footer flex-center">
-          <a href="" class="btn  btn-outline-danger">Yes</a>
-          <a type="button" class="btn  btn-danger waves-effect" (click)="modal.close()">No</a>
+            <a href="" class="btn  btn-outline-danger">Yes</a>
+            <a type="button" class="btn  btn-danger waves-effect" (click)="modal.close()">No</a>
         </div>
-      </div>
+    </div>
 
 </ng-template>
 <!-- fin del modal -->
