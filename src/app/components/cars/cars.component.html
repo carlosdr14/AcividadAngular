@@ -39,15 +39,20 @@
                         Bikes
                     </a>
                 </li>
-                <li class="nav-item text-center mx-2 mx-lg-1">
-                    <a class="nav-link" outerLinkActive="active-link" (click)="cerrarSesion()">
-                        <div>
-                            <i class="fas fa-sign-out-alt fa-lg mb-1"></i>
-                        </div>
-                        Cerrar Sesion
-                    </a>
+                
             </ul>
         </div>
+
+        <form action="">
+            <li class="nav-item text-center mx-2 mx-lg-1">
+                <a class="nav-link" outerLinkActive="active-link" (click)="cerrarSesion()">
+                    <div>
+                        <i class="fas fa-sign-out-alt fa-lg mb-1"></i>
+                    </div>
+                    Cerrar Sesion
+                </a>
+            </li>
+        </form>
 
     </div>
 </nav>
@@ -143,6 +148,8 @@
     </div>
 </ng-template>
 <!-- fin del modal -->
+
+<button type="submit" class="btn btn-warning" routerLink="/editarcar">Registrar carros</button>
 
 
 <!-- modal para eliminar datos -->
