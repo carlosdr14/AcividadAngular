@@ -19,7 +19,7 @@ export class RegistrarComponent {
   phone: string = '';
   password: string = '';
   password_confirmation: string = '';
-  role: string = 'user';
+  role: number = 0;
   active: boolean = false;
   activation_code = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
   codigo: string = '';

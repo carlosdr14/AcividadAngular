@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, retry, Subject, tap, throwError } from 'rxjs';
 import { BikeM } from 'src/app/Models/biker.model';
 import { environment } from 'src/environments/enviroment.development';
-
+import {  HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -31,6 +31,8 @@ export class BikerService {
   constructor(private http: HttpClient) { }
 
   get refresh$() { return this._refresh$ }
+  apiUrl = 'http://localhost:8000/api';
+
 
   getBiker(): Observable<BikeM[]> {
     return this.http.get<BikeM[]>(this.obtenerbiker)
@@ -62,5 +64,14 @@ export class BikerService {
     return this.http.delete<BikeM>(this.eliminarBiker + biker.id)
       .pipe(retry(3), catchError(this.handleError));
   }
+
+  getBikes(token: string): Observable<BikeM> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      
+    });
+    return this.http.get<BikeM>(`${this.apiUrl}/bikes`, { headers });
+  }
+
 
 }

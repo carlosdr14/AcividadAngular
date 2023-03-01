@@ -39,6 +39,13 @@
                         Bikes
                     </a>
                 </li>
+                <li class="nav-item text-center mx-2 mx-lg-1">
+                    <a class="nav-link" outerLinkActive="active-link" (click)="cerrarSesion()">
+                        <div>
+                            <i class="fas fa-sign-out-alt fa-lg mb-1"></i>
+                        </div>
+                        Cerrar Sesion
+                    </a>
             </ul>
         </div>
 
@@ -79,11 +86,12 @@
                         <td><button type="button" class="btn btn-danger">Eliminar</button></td>
                     </tr>  -->
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Susuky</td>
-                        <td>Catana</td>
-                        <td>azul</td>
-                        <td>2023</td>
+                        <tr *ngFor="let bike of bikes  ">
+                            
+                            <td>{{ bike.brand }}</td>
+                            <td>{{ bike.model }}</td>
+                            <td>{{ bike.color }}</td>
+                            <td>{{ bike.year }}</td>
                         <td><button type="button" class="btn btn-primary" (click)="EditarB()">Editar</button>
                         </td>
                         <td><button type="button" class="btn btn-danger" (click)="EliminarB()">Eliminar</button></td>

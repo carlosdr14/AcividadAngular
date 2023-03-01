@@ -4,7 +4,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PersonaService } from 'src/app/services/Personas/persona.service';
 import { PersonaM } from 'src/app/Models/persona.model';
 import { Location } from '@angular/common';
+import { Route, Router } from '@angular/router';
+import { LoginService } from 'src/app/services/Login/log.service';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
     selector: 'app-personas',
@@ -18,45 +21,71 @@ export class PersonasComponent {
     @ViewChild('contenido') contenido: any;
     @ViewChild('eliminar') eliminar: any;
 
-    personas!:
-        {
-            id: number,
-            name: string,
-            email: string,
-            phone: string,
-            password: string,
-            role: string,
-            active: boolean,
-            activation_code: string,
-        }[];
-
-
+    personas: PersonaM[] = [];
+    id: number = 0;
+    name: string = '';
+    phone: string = '';
+    role: string = '';
+    active: string = '';
     constructor(private modalService: NgbModal, private personaService: PersonaService, private fb: FormBuilder,
-        private location: Location) {
-        this.form = this.fb.group({
-            name: ['', Validators.required],
-            email: ['', Validators.required],
-            phone: ['', Validators.required],
-            password: ['', Validators.required],
-            role: ['', Validators.required],
-            active: ['', Validators.required],
-            activation_code: ['', Validators.required],
-        })
+        private location: Location,private router: Router,private authService: LoginService) {
+    
     }
 
+    ngOnInit(): void {
+        const token = localStorage.getItem('token') ?? '';
+        console.log(token);
 
-    OnSubmit(values: PersonaM) {
-        this.personaService.addPersona(values).subscribe();
-        this.form.reset();
-        this.location.back();
-    }
+    // Or 'admin', depending on the role of the user
+        this.personaService.getPersonas(token).subscribe((res) => {
+            this.personas = res;
+            console.log(res)
+            
+        });
+        } 
+        cerrarSesion() {
+            this.authService.logout();
+            this.router.navigate(['/inicio']);
+          }
 
 
-    abrirModal() {
-        this.modalService.open(this.contenido);
-    }
+   
+
+
+    abrirModal(persona: any) {
+        this.modalService.open(this.contenido, { centered: true });
+        this.id = persona.id;
+        console.log("id",this.id);
+       
+      }
+    abrirC()
+    {
+       const token = localStorage.getItem('token') ?? '';
+       const id = this.id;
+       const form = {
+            name: this.name,
+            phone: this.phone,
+            role: JSON.parse(this.role),
+           active: JSON.parse(this.active)
+            } 
+
+        this.personaService.updatePersona(form,id,token).subscribe(
+            (res) => {
+                alert("Successful");
+            },
+            (err) => {
+                alert(err);
+            }
+        );
+
+            console.log("formulario",form);
+            console.log("id",id);
+        
+            
+           }
 
     EliminarP() {
+        
         this.modalService.open(this.eliminar);
     }
 }

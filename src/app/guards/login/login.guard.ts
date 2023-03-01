@@ -14,7 +14,13 @@ export class LoginGuard implements CanActivate {
       // Si existe un token en el LocalStorage, redirige al usuario a la página principal
       this.router.navigate(['/menu']);
       return false;
-    } else {
+    } 
+    //si el token no es valido 
+    else if (localStorage.getItem('token') == null) {
+      // Si no existe un token en el LocalStorage, permite el acceso a la página de inicio de sesión
+      return true;
+    }
+    else {
       // Si no existe un token en el LocalStorage, permite el acceso a la página de inicio de sesión
       return true;
     }

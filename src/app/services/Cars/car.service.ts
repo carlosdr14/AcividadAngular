@@ -4,6 +4,8 @@ import { catchError, Observable, retry, Subject, tap, throwError } from 'rxjs';
 import { CarM } from 'src/app/Models/car.model';
 import { environment } from 'src/environments/enviroment.development';
 
+import {  HttpHeaders } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -30,14 +32,11 @@ export class CarService {
   }
 
   constructor(private http: HttpClient) { }
+  apiUrl = 'http://localhost:8000/api';
 
   get refresh$() { return this._refresh$ }
 
-  getCar(): Observable<CarM[]> {
-    return this.http.get<CarM[]>(this.obtenercar)
-    .pipe(retry(3), catchError(this.handleError))
-  }
-
+  
   addCar(car: CarM): Observable<CarM> {
     return this.http.post<CarM>(this.crearCar, car)
       .pipe(catchError(this.handleError))
@@ -62,6 +61,14 @@ export class CarService {
   deleteCar(car:CarM): Observable<CarM> {
     return this.http.delete<CarM>(this.eliminarCar + car.id)
       .pipe(retry(3), catchError(this.handleError));
+  }
+
+  getCars(token: string): Observable<CarM[]> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+  
+    });
+    return this.http.get<CarM[]>(`${this.apiUrl}/cars`, { headers });
   }
 
 }

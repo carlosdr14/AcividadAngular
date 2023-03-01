@@ -20,11 +20,11 @@
                         <div>
                             <i class="fas fa-user fa-lg mb-1"></i>
                         </div>
-                       personas
+                        personas
                     </a>
                 </li>
                 <li class="nav-item text-center mx-2 mx-lg-1">
-                    <a class="nav-link"outerLinkActive="active-link" routerLink="/cars">
+                    <a class="nav-link" outerLinkActive="active-link" routerLink="/cars">
                         <div>
                             <i class="fas fa-car fa-lg mb-1"></i>
                         </div>
@@ -37,6 +37,15 @@
                             <i class="fas fa-motorcycle fa-lg mb-1"></i>
                         </div>
                         Bikes
+                    </a>
+                </li>
+
+                <li class="nav-item text-center mx-2 mx-lg-1">
+                    <a class="nav-link" outerLinkActive="active-link" (click)="cerrarSesion()">
+                        <div>
+                            <i class="fas fa-sign-out-alt fa-lg mb-1"></i>
+                        </div>
+                        Cerrar Sesion
                     </a>
                 </li>
             </ul>
@@ -64,10 +73,8 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Correo</th>
                         <th scope="col">Teléfono</th>
-                        <th scope="col">Contraseña</th>
                         <th scope="col">Rol</th>
                         <th scope="col">Activo</th>
-                        <th scope="col">Código de activación</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
                     </tr>
@@ -78,13 +85,29 @@
                         <td>{{ persona.name }}</td>
                         <td>{{ persona.email }}</td>
                         <td>{{ persona.phone }}</td>
-                        <td>{{ persona.password }}</td>
-                        <td>{{ persona.role }}</td>
-                        <td>{{ persona.active }}</td>
-                        <td>{{ persona.activation_code }}</td>
-                        <td><button type="button" class="btn btn-primary" (click)="abrirModal()">Editar</button>
+                        <td>
+                            <ng-container *ngIf="persona.role == 1">User</ng-container>
+                            <ng-container *ngIf="persona.role == 2">Admin</ng-container>
+                            <ng-container *ngIf="persona.role == 3">Empleado</ng-container>
                         </td>
-                        <td><button type="button" class="btn btn-danger" (click)="EliminarP()">Eliminar</button></td>
+                        <td>
+                            <ng-container *ngIf="persona.active == true">Sí</ng-container>
+                            <ng-container *ngIf="persona.active == false">No</ng-container>
+                        </td>
+                        <td><button type="button" class="btn btn-primary" (click)="abrirModal(persona)"
+                                *ngIf="persona.role==2" disabled >Editar</button>
+                                <button type="button" class="btn btn-primary" (click)="abrirModal(persona)"
+                                *ngIf="persona.role==1"  >Editar</button>
+                                <button type="button" class="btn btn-primary" (click)="abrirModal(persona)"
+                                *ngIf="persona.role==3"  >Editar</button>
+                        </td>
+                        <td><button type="button" class="btn btn-danger" (click)="EliminarP()" *ngIf="persona.role==2"
+                                disabled>Eliminar</button>
+                            <button type="button" class="btn btn-danger" (click)="EliminarP()"
+                                *ngIf="persona.role==1">Eliminar</button>
+                            <button type="button" class="btn btn-danger" (click)="EliminarP()"
+                                *ngIf="persona.role==3">Eliminar</button>
+                        </td>
                 </tbody>
             </table>
         </div>
@@ -103,36 +126,43 @@
         </button>
     </div>
     <div class="modal-body">
-        <form>
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-                <label class="form-label" for="email">correo</label>
-                <input type="email" id="email" class="form-control" placeholder="Actualizar Email" required />
-            </div>
 
-            <!-- nombre input -->
+        <form (ngSubmit)="abrirC()" #form="ngForm" [(ngModel)]="id">
+            <hr>
+
+
             <div class="form-outline mb-4">
                 <label class="form-label" for="name">Nombre</label>
-                <input type="text" id="name" class="form-control" placeholder="actualizar nombre" required/>
+                <input [(ngModel)]="name" name="name" type="text" id="name" class="form-control"
+                    placeholder="Ingrese nombre" required />
             </div>
-
-            <!-- apellido input -->
             <div class="form-outline mb-4">
-                <label class="form-label" for="name">apellido</label>
-                <input type="text" id="name" class="form-control" placeholder="actualizar apellido" required/>
+                <label class="form-label" for="phone">Teléfono</label>
+                <input [(ngModel)]="phone" name="phone" type="text" id="phone" class="form-control"
+                    placeholder="Ingrese teléfono" required />
             </div>
-
-            <!-- telefono input -->
-            <div class="form-outline mb-4">
-                <label class="form-label" for="name">telefono</label>
-                <input type="text" id="name" class="form-control" placeholder="actualizar numero de telefono" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-
-            </div>
+            <label for="">Role</label>
+            <select [(ngModel)]="role" name="role" id="role" class="form-control" required>
+                <option value="">Selecciona un Role</option>
+                <option value="1">User</option>
+                <option value="3">Empleado</option>
+            </select>
+            <br>
+            <label for="">Activo</label>
+            <select [(ngModel)]="active" name="active" id="active" class="form-control" required>
+                <option value="">Selecciona un estado</option>
+                <option value="true">SI</option>
+                <option value="false">NO</option>
+            </select>
+            
+            <br>
+            <button type="submit" class="btn btn-primary btn-block">actualizar</button>
         </form>
+
     </div>
     <div class="modal-footer">
         <button class="btn btn-outline-dark" type="button" (click)="modal.close()">Cerrar</button>
-        <button type="submit" class="btn btn-primary btn-block">actualizar</button>
+
     </div>
 </ng-template>
 <!-- fin del modal -->
@@ -140,11 +170,11 @@
 
 <!-- modal para eliminar datos -->
 <ng-template #eliminar let-modal>
-    
-      <div class="modal-content text-center mb-">
-  
+
+    <div class="modal-content text-center mb-">
+
         <div class="modal-header x d-flex justify-content-center">
-          <h1 class="heading" id="color-h3">estas seguro?</h1>
+            <h1 class="heading" id="color-h3">estas seguro?</h1>
         </div>
 
         <div class="modal-body">
@@ -152,10 +182,10 @@
         </div>
 
         <div class="modal-footer flex-center">
-          <a href="" class="btn  btn-outline-danger">Yes</a>
-          <a type="button" class="btn  btn-danger waves-effect" (click)="modal.close()">No</a>
+            <a href="" class="btn  btn-outline-danger">Yes</a>
+            <a type="button" class="btn  btn-danger waves-effect" (click)="modal.close()">No</a>
         </div>
-      </div>
+    </div>
 
 </ng-template>
 <!-- fin del modal -->

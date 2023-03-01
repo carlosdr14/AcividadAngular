@@ -1,4 +1,4 @@
-
+import { Location } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; // <-- Import FormsModule
@@ -45,7 +45,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [PersonaService],
+  providers: [PersonaService,Location],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
