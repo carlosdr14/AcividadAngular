@@ -1,1 +1,29 @@
-<p>editarbiker works!</p>
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet'
+  type='text/css'>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+
+<div class="testbox">
+  <h1>Registrar bikes</h1>
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+    <hr>
+    <label id="icon" for="name"><i class="fas fa-motorcycle icon"></i></label>
+    <input type="text" name="brand" id="brand" placeholder="Brand" required [(ngModel)]="brand" />
+    
+    <label id="icon" for="name"><i class="fas fa-motorcycle icon"></i></label>
+    <input type="text" name="model" id="model" placeholder="Model" required [(ngModel)]="model" />    
+  
+    <label  id="icon" for="name"><i class="fas fa-paint-roller icon"></i></label>
+    <input type="text" name="color" id="color" placeholder="Color" required [(ngModel)]="color" />
+
+    <label id="icon" for="name"><i class="fas fa-calendar"></i></label>
+    <input type="text" name="year" id="year" placeholder="Year" required [(ngModel)]="year" />
+
+    <hr>
+  
+    <button type="submit" class="button">Register</button>
+  </form>
+  
+</div>

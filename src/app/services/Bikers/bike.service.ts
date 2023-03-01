@@ -33,19 +33,25 @@ export class BikerService {
   get refresh$() { return this._refresh$ }
   apiUrl = 'http://localhost:8000/api';
 
+  addBiker(car: BikeM,token:string): Observable<BikeM> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+  
+    });
+
+    return this.http.post<BikeM>(this.crearBiker, car, { headers })
+      .pipe(catchError(this.handleError))
+      .pipe(tap(() => {
+        this._refresh$.next();
+      }));
+  }
+  
 
   getBiker(): Observable<BikeM[]> {
     return this.http.get<BikeM[]>(this.obtenerbiker)
     .pipe(retry(3), catchError(this.handleError))
   }
 
-  addBiker(biker: BikeM): Observable<BikeM> {
-    return this.http.post<BikeM>(this.crearBiker, biker)
-      .pipe(catchError(this.handleError))
-      .pipe(tap(() => {
-        this._refresh$.next();
-      }));
-  }
 
   getOneBiker(id: number): Observable<BikeM> {
     return this.http.get<BikeM>(this.obtenerbikerid + id)
