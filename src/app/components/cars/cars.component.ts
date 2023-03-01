@@ -94,6 +94,7 @@ const token = localStorage.getItem('token') ?? '';
 console.log(id);
 this.carService.deleteCar(token,id).subscribe((res) => {
   alert("Se ha eliminado correctamente");
+  this.ngOnInit();
 },
 (err) => {
   if (err == 500)
