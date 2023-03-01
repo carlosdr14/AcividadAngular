@@ -96,11 +96,11 @@
                                 <button type="button" class="btn btn-primary" (click)="abrirModal(persona)"
                                 *ngIf="persona.role==3"  >Editar</button>
                         </td>
-                        <td><button type="button" class="btn btn-danger" (click)="EliminarP()" *ngIf="persona.role==2"
+                        <td><button type="button" class="btn btn-danger" (click)="EliminarP(persona)" *ngIf="persona.role==2"
                                 disabled>Eliminar</button>
-                            <button type="button" class="btn btn-danger" (click)="EliminarP()"
+                            <button type="button" class="btn btn-danger" (click)="EliminarP(persona)"
                                 *ngIf="persona.role==1">Eliminar</button>
-                            <button type="button" class="btn btn-danger" (click)="EliminarP()"
+                            <button type="button" class="btn btn-danger" (click)="EliminarP(persona)"
                                 *ngIf="persona.role==3">Eliminar</button>
                         </td>
                 </tbody>
@@ -122,19 +122,15 @@
     </div>
     <div class="modal-body">
 
-        <form (ngSubmit)="abrirC()" #form="ngForm" [(ngModel)]="id">
+        <form (ngSubmit)="abrirC()" #form="ngForm">
             <hr>
-
-
             <div class="form-outline mb-4">
                 <label class="form-label" for="name">Nombre</label>
-                <input [(ngModel)]="name" name="name" type="text" id="name" class="form-control"
-                    placeholder="Ingrese nombre" required />
+                <input [(ngModel)]="name" name="name" type="text" id="name" class="form-control" placeholder="Ingrese nombre" required />
             </div>
             <div class="form-outline mb-4">
                 <label class="form-label" for="phone">Teléfono</label>
-                <input [(ngModel)]="phone" name="phone" type="text" id="phone" class="form-control"
-                    placeholder="Ingrese teléfono" required />
+                <input [(ngModel)]="phone" name="phone" type="text" id="phone" class="form-control" placeholder="Ingrese teléfono" required />
             </div>
             <label for="">Role</label>
             <select [(ngModel)]="role" name="role" id="role" class="form-control" required>
@@ -149,10 +145,10 @@
                 <option value="true">SI</option>
                 <option value="false">NO</option>
             </select>
-            
             <br>
             <button type="submit" class="btn btn-primary btn-block">actualizar</button>
         </form>
+        
 
     </div>
     <div class="modal-footer">

@@ -43,6 +43,9 @@ export class PersonasComponent {
             
         });
         } 
+
+
+        
         cerrarSesion() {
             this.authService.logout();
             this.router.navigate(['/inicio']);
@@ -74,7 +77,12 @@ export class PersonasComponent {
                 alert("Successful");
             },
             (err) => {
-                alert(err);
+                if (err.status == 500)
+                {
+                  alert("Nos encontramos en mantenimiento");
+                }
+                
+
             }
         );
 
@@ -84,8 +92,15 @@ export class PersonasComponent {
             
            }
 
-    EliminarP() {
+    EliminarP( persona: any) {
         
-        this.modalService.open(this.eliminar);
+        this.id = persona.id;
+        console.log("id",this.id);
+        const token = localStorage.getItem('token') ?? '';
+        this.personaService.deletePersona(this.id,token).subscribe(
+            (res) => {
+                alert("Successful");
+            }
+        );
     }
 }
