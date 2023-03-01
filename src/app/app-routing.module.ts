@@ -9,6 +9,7 @@ import { RegistrarComponent } from './components/registrar/registrar.component';
 
 import {EditarbikerComponent} from './components/editarbiker/editarbiker.component';
 import {EditarcarComponent} from './components/editarcar/editarcar.component';
+import { EliminarcarComponent } from './components/eliminarcar/eliminarcar.component';
 
 import { MenuComponent } from './components/menu/menu.component';
 import { LoginGuard } from './guards/login/login.guard';
@@ -25,6 +26,8 @@ const routes: Routes = [
   {path:'menu', component: MenuComponent, canActivate:[AuthGuard] },
   {path:'editarbiker', component: EditarbikerComponent, canActivate:[AuthGuard] },
   {path:'editarcar', component: EditarcarComponent, canActivate:[AuthGuard] },
+  {path:'eliminarcar', component: EliminarcarComponent, canActivate:[AuthGuard] },
+
   {path:'notfound', component: NotfoundComponent},
   {path:'**', redirectTo:'notfound', pathMatch:'full'}
 ];
