@@ -84,6 +84,7 @@
                     </tr>  -->
                    
                         <tr *ngFor="let bike of bikes">
+                            <th scope="row">{{ bike.id }}</th>
                           <td>{{ bike.brand }}</td>
                           <td>{{ bike.model }}</td>
                           <td>{{ bike.color }}</td>

@@ -36,8 +36,13 @@ export class CarService {
 
   get refresh$() { return this._refresh$ }
 
-  addCar(car: CarM): Observable<CarM> {
-    return this.http.post<CarM>(this.crearCar, car)
+  addCar(car: CarM,token:string): Observable<CarM> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+  
+    });
+
+    return this.http.post<CarM>(this.crearCar, car, { headers })
       .pipe(catchError(this.handleError))
       .pipe(tap(() => {
         this._refresh$.next();

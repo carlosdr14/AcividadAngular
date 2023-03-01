@@ -24,13 +24,14 @@ export class EditarcarComponent {
       year: this.year,
       color: this.color
     };
+    const token = localStorage.getItem('token') ?? '';
 
-    this.carservice.addCar(car).subscribe(
+    this.carservice.addCar(car,token).subscribe(
       (res) => {
         alert('Successful');
       },
       (err) => {
-        alert(err);
+        alert('Error favor de verificar los datos');
       }
     );
   }

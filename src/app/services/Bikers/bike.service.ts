@@ -65,12 +65,12 @@ export class BikerService {
       .pipe(retry(3), catchError(this.handleError));
   }
 
-  getBikes(token: string): Observable<BikeM> {
+  getBikes(token: string): Observable<BikeM[]> {
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-      
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     });
-    return this.http.get<BikeM>(`${this.apiUrl}/bikes`, { headers });
+    return this.http.get<BikeM[]>(`${this.apiUrl}/bikes`, { headers });
   }
 
 

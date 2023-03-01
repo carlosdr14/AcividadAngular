@@ -29,7 +29,8 @@ constructor(private modal: NgbModal, private carService: CarService,
   
   // Or 'admin', depending on the role of the user
     this.carService.getCars(token).subscribe((res) => {
-        this.car
+        this.cars = res;
+        console.log(res);
     },
     (err) => {
       if (err == 500)

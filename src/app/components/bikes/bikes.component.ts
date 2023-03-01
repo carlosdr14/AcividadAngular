@@ -22,6 +22,13 @@ export class BikesComponent {
 
 
 bikes: BikeM[] = [];
+id: number = 0;
+brand: string = '';
+model: string = '';
+year: string = '';
+color: string = '';
+
+
 constructor(private modal: NgbModal, private bikeService: BikerService,
   private location: Location,private router: Router, private authService:LoginService,) { }
 
@@ -31,7 +38,7 @@ constructor(private modal: NgbModal, private bikeService: BikerService,
   
   // Or 'admin', depending on the role of the user
     this.bikeService.getBikes(token).subscribe((res) => {
-        this.bike = res;
+        this.bikes = res;
         console.log(res);
     });
   
