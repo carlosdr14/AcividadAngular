@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, retry, Subject, tap, throwError } from 'rxjs';
 import { PersonaM } from 'src/app/Models/persona.model';
 import { environment } from 'src/environments/viroment';
+import {  HttpHeaders } from '@angular/common/http';
 
 
 
@@ -60,17 +61,31 @@ export class PersonaService {
     return this.http.post(`${this.apiUrl}/getuser`, {email: email});
   }
 
-  updatePersona(persona: PersonaM): Observable<PersonaM> {
-    return this.http.put<PersonaM>(this.modificarPersona + persona.id, persona)
+  updatePersona(persona: PersonaM,id:number, token:string): Observable<PersonaM> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+  
+    });
+    return this.http.put<PersonaM>(`${this.apiUrl}/clients/${id}`, persona, { headers })
       .pipe(catchError(this.handleError))
       .pipe(tap(() => {
         this._refresh$.next();
       }));
+      
   }
 
-  deletePersona(persona: PersonaM): Observable<PersonaM> {
-    return this.http.delete<PersonaM>(this.eliminarPersona + persona.id)
+  deletePersona(persona: any): Observable<any> {
+    return this.http.delete<any>(this.eliminarPersona + persona.id)
       .pipe(retry(3), catchError(this.handleError));
   }
+
+  getPersonas(token: string): Observable<PersonaM[]> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+  
+    });
+    return this.http.get<PersonaM[]>(`${this.apiUrl}/allusers`, { headers });
+  }
+
 
 }
