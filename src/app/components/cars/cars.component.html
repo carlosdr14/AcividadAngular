@@ -75,7 +75,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
                         <tr *ngFor="let car of cars  ">
                             <th scope="row">{{ car.id }}</th>
                             <td>{{ car.brand }}</td>
@@ -85,6 +84,9 @@
                         <td><button type="button" class="btn btn-primary" (click)="EditarC(car)">Editar</button>
                         </td>
                         <td><button type="button" class="btn btn-danger" (click)="EliminarC(car)">Eliminar</button></td>
+                        </tr>
+                    
+
                 </tbody>
             </table>
         </div>
