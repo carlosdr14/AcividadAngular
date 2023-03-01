@@ -20,11 +20,11 @@
                         <div>
                             <i class="fas fa-user fa-lg mb-1"></i>
                         </div>
-                       personas
+                        personas
                     </a>
                 </li>
                 <li class="nav-item text-center mx-2 mx-lg-1">
-                    <a class="nav-link"outerLinkActive="active-link" routerLink="/cars">
+                    <a class="nav-link" outerLinkActive="active-link" routerLink="/cars">
                         <div>
                             <i class="fas fa-car fa-lg mb-1"></i>
                         </div>
@@ -39,7 +39,7 @@
                         Bikes
                     </a>
                 </li>
-                
+
             </ul>
         </div>
 
@@ -91,12 +91,12 @@
                         <td><button type="button" class="btn btn-danger">Eliminar</button></td>
                     </tr> -->
                     <tr>
-                        <tr *ngFor="let car of cars  ">
-                            
-                            <td>{{ car.brand }}</td>
-                            <td>{{ car.model }}</td>
-                            <td>{{ car.color }}</td>
-                            <td>{{ car.year }}</td>
+                    <tr *ngFor="let car of cars  ">
+
+                        <td>{{ car.brand }}</td>
+                        <td>{{ car.model }}</td>
+                        <td>{{ car.color }}</td>
+                        <td>{{ car.year }}</td>
                         <td><button type="button" class="btn btn-primary" (click)="EditarC()">Editar</button>
                         </td>
                         <td><button type="button" class="btn btn-danger" (click)="EliminarC()">Eliminar</button></td>
@@ -118,7 +118,7 @@
         </button>
     </div>
     <div class="modal-body">
-        <form >
+        <form>
             <!-- marca -->
             <div class="form-outline mb-4">
                 <label for="form-label">Marca</label>
@@ -147,18 +147,21 @@
         <button type="submit" class="btn btn-primary btn-block">actualizar</button>
     </div>
 </ng-template>
+<div  class="left-div">
+    <button type="submit" class="btn btn-warning float-right custom-margin" routerLink="/editarcar">Registrar
+        carros</button>
+</div>
 <!-- fin del modal -->
 
-<button type="submit" class="btn btn-warning" routerLink="/editarcar">Registrar carros</button>
 
 
 <!-- modal para eliminar datos -->
 <ng-template #eliminar let-modal>
-    
-      <div class="modal-content text-center mb-">
-  
+
+    <div class="modal-content text-center mb-">
+
         <div class="modal-header x d-flex justify-content-center">
-          <h1 class="heading" id="color-h3">estas seguro?</h1>
+            <h1 class="heading" id="color-h3">estas seguro?</h1>
         </div>
 
         <div class="modal-body">
@@ -166,10 +169,10 @@
         </div>
 
         <div class="modal-footer flex-center">
-          <a href="" class="btn  btn-outline-danger">Yes</a>
-          <a type="button" class="btn  btn-danger waves-effect" (click)="modal.close()">No</a>
+            <a href="" class="btn  btn-outline-danger">Yes</a>
+            <a type="button" class="btn  btn-danger waves-effect" (click)="modal.close()">No</a>
         </div>
-      </div>
+    </div>
 
 </ng-template>
 <!-- fin del modal -->

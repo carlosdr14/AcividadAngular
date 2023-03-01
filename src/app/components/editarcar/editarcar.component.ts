@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CarService } from 'src/app/services/Cars/car.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class EditarcarComponent {
   year: number=0;
   color: string='';
 
-  constructor(private carservice:CarService) {}
+  constructor(private carservice:CarService, private router: Router) {}
 
   onSubmit() {
     const car = {
@@ -28,6 +29,7 @@ export class EditarcarComponent {
     this.carservice.addCar(car).subscribe(
       (res) => {
         alert('Successful');
+        this.router.navigate(['/cars']); // redirigir a la página de coches
       },
       (err) => {
         alert(err);
