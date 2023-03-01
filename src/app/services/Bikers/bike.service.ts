@@ -4,6 +4,7 @@ import { catchError, Observable, retry, Subject, tap, throwError } from 'rxjs';
 import { BikeM } from 'src/app/Models/biker.model';
 import { environment } from 'src/environments/enviroment.development';
 import {  HttpHeaders } from '@angular/common/http';
+import { Token } from '@angular/compiler';
 @Injectable({
   providedIn: 'root'
 })
@@ -70,8 +71,11 @@ export class BikerService {
       }));
   }
 
-  deleteBiker(biker:BikeM): Observable<BikeM> {
-    return this.http.delete<BikeM>(this.eliminarBiker + biker.id)
+  deleteBiker(id:number, token:string): Observable<BikeM> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.delete<BikeM>(`${this.apiUrl}/bikes/${id}`, { headers })
       .pipe(retry(3), catchError(this.handleError));
   }
 

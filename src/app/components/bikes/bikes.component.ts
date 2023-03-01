@@ -70,8 +70,18 @@ abrirC()
 }
 
 
-EliminarB() {
-  this.modal.open(this.eliminar);
+EliminarB(bike:any) {
+ 
+  const id = bike.id;
+  const token = localStorage.getItem('token') ?? '';
+  this.bikeService.deleteBiker(id,token).subscribe(
+    (res) => {
+      console.log(res);
+      this.modal.dismissAll();
+      this.ngOnInit();
+    }
+  );
+
   }
   cerrarSesion() {
     this.authService.logout();
