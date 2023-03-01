@@ -22,7 +22,7 @@ export class BikesComponent {
 
 
 bikes: BikeM[] = [];
-id: number = 0;
+id?: number;
 brand: string = '';
 model: string = '';
 year: string = '';
@@ -43,10 +43,31 @@ constructor(private modal: NgbModal, private bikeService: BikerService,
     });
   
   }
-EditarB() {
+EditarB(bike:BikeM) {
+  this.id=bike.id;
 this.modal.open(this.contenido);
 }
+abrirC()
+{
+  const id = this.id ?? 0;
+  console.log(id);
+  const bike = {
+    brand: this.brand,
+    model: this.model,
+    year: this.year,
+    color: this.color
+  };
+  console.log(bike);
+  const token = localStorage.getItem('token') ?? '';
+  this.bikeService.updateBiker(id,bike,token).subscribe(
+    (res) => {
+      console.log(res);
+      this.modal.dismissAll();
+      this.ngOnInit();
+    }
+  );
 
+}
 
 
 EliminarB() {

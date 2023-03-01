@@ -58,8 +58,12 @@ export class BikerService {
       .pipe(retry(3), catchError(this.handleError));
   }
 
-  updateBiker(biker:BikeM ): Observable<BikeM> {
-    return this.http.put<BikeM>(this.modificarBiker + biker.id, biker)
+  updateBiker(id:number,car:BikeM ,token:string): Observable<BikeM> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+
+    });
+    return this.http.put<BikeM>( `${this.apiUrl}/bikes/${id}`, car, { headers })
       .pipe(catchError(this.handleError))
       .pipe(tap(() => {
         this._refresh$.next();

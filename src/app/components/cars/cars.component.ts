@@ -70,7 +70,7 @@ abrirC()
   console.log(id);
   const token = localStorage.getItem('token') ?? '';
   this.carService.updateCar(id,car,token).subscribe((res) => {
-    
+    this.ngOnInit();
     alert("Se ha actualizado correctamente");
   },
   (err) => {

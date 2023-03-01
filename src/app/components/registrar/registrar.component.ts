@@ -49,13 +49,22 @@ export class RegistrarComponent {
     this.persona.addPersona(form).subscribe(
       (res) => {
 
-        alert("Successful");
-      },
-      (err) => {
-        if (err.status == 422)
+        if (res== 401)
         {
           alert("El correo ya existe");
         }
+        if(res == 400)
+        {
+          alert("Las contraseñas no coinciden");
+        }
+
+       if (res == 201)
+        {
+          alert("Se ha enviado un correo para activar la cuenta");
+        }
+      },
+      (err) => {
+       
         if (err.status == 500)
         {
           alert("Nos encontramos en mantenimiento");

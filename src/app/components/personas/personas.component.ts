@@ -45,7 +45,7 @@ export class PersonasComponent {
         } 
 
 
-        
+
         cerrarSesion() {
             this.authService.logout();
             this.router.navigate(['/inicio']);
@@ -74,6 +74,7 @@ export class PersonasComponent {
 
         this.personaService.updatePersona(form,id,token).subscribe(
             (res) => {
+                this.ngOnInit();
                 alert("Successful");
             },
             (err) => {

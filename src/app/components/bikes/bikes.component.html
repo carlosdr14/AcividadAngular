@@ -89,7 +89,7 @@
                           <td>{{ bike.model }}</td>
                           <td>{{ bike.color }}</td>
                           <td>{{ bike.year }}</td>
-                          <td><button type="button" class="btn btn-primary" (click)="EditarB()">Editar</button></td>
+                          <td><button type="button" class="btn btn-primary" (click)="EditarB(bike)">Editar</button></td>
                           <td><button type="button" class="btn btn-danger" (click)="EliminarB()">Eliminar</button></td>
                         </tr>
                       </tbody>
@@ -115,33 +115,32 @@
         </button>
     </div>
     <div class="modal-body">
-        <form >
+        <form  (ngSubmit)="abrirC()" #form="ngForm">
             <!-- marca -->
             <div class="form-outline mb-4">
                 <label for="form-label">Marca</label>
-                <input type="text" id="email" class="form-control" placeholder="Actualiza modelo" />
+                <input [(ngModel)]="brand" type="text" id="brand" name="brand" class="form-control" placeholder="Actualiza modelo" />
             </div>
             <!-- modelo -->
             <div class="form-outline mb-4">
                 <label for="form-label">Modelo</label>
-                <input type="text" id="email" class="form-control" placeholder="Actualiza marca" />
+                <input  [(ngModel)]="model" type="text" id="model" name="model" class="form-control" placeholder="Actualiza marca" />
             </div>
             <!-- color -->
             <div class="form-outline mb-4">
                 <label for="form-label">Color</label>
-                <input type="text" id="email" class="form-control" placeholder="Actualiza color" />
+                <input [(ngModel)]="color" type="text" id="color"  name="color" class="form-control" placeholder="Actualiza color" />
             </div>
             <!-- año -->
             <div class="form-outline mb-4">
                 <label for="form-label">Año</label>
-                <input type="text" id="email" class="form-control" placeholder="Actualiza año" />
+                <input [(ngModel)]="year"  type="year" id="year" name="year" class="form-control" placeholder="Actualiza año" />
             </div>
+            <button type="submit" class="btn btn-primary btn-block">actualizar</button>
 
         </form>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-outline-dark" type="button" (click)="modal.close()">Cerrar</button>
-        <button type="submit" class="btn btn-primary btn-block">actualizar</button>
     </div>
 </ng-template>
 <!-- fin del modal -->

@@ -11,7 +11,7 @@ export class EditarbikerComponent {
   id: number=0;
   brand: string='';
   model: string='';
-  year: number=0;
+  year: string='';
   color: string='';
 
   constructor(private bikeservice:BikerService, private router: Router) {}
