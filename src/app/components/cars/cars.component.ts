@@ -53,7 +53,9 @@ EditarC(car:CarM) {
   this.id = car.id;
 this.modal.open(this.contenido);
 }
+
 abrirC()
+
 {
   const id = this.id ?? 0;
 

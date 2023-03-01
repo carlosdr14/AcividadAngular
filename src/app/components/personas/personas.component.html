@@ -91,7 +91,7 @@
                             <ng-container *ngIf="persona.active == false">No</ng-container>
                         </td>
                         <td><button type="button" class="btn btn-primary" (click)="abrirModal(persona)"
-                                *ngIf="persona.role==2" disabled>Editar</button>
+                                *ngIf="persona.role==2" hidden>Editar</button>
                             <button type="button" class="btn btn-primary" (click)="abrirModal(persona)"
                                 *ngIf="persona.role==1">Editar</button>
                             <button type="button" class="btn btn-primary" (click)="abrirModal(persona)"
@@ -99,7 +99,7 @@
                         </td>
                         <td>
                             <button type="button" class="btn btn-danger" (click)="EliminarP(persona)"
-                                *ngIf="persona.role !== 2">Eliminar</button>
+                                *ngIf="persona.role == 2" hidden>Eliminar</button>
                             <!-- <button type="button" class="btn btn-danger" (click)="EliminarP(persona)"
                                 *ngIf="persona.role==2" disabled>Eliminar</button> -->
                             <button type="button" class="btn btn-danger" (click)="EliminarP(persona)"
