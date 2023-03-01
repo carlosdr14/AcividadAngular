@@ -17,14 +17,14 @@ import { AuthGuard } from './guards/Usuario/usuario-activo.guard';
 //rutas de navegacion
 const routes: Routes = [
   {path:'', redirectTo:'inicio', pathMatch:'full'},
-  {path:'inicio', component:IniciarsesionComponent, canActivate:[LoginGuard]},
-  {path:'registrar', component:RegistrarComponent, canActivate:[LoginGuard]},
-  {path:'personas', component: PersonasComponent, canActivate:[AuthGuard]},
-  {path:'bikes',component:BikesComponent, canActivate:[AuthGuard]},
-  {path:'cars', component: CarsComponent, canActivate:[AuthGuard]},
-  {path:'menu', component: MenuComponent, canActivate:[AuthGuard]},
-  {path:'editarbiker', component: EditarbikerComponent, canActivate:[AuthGuard]},
-  {path:'editarcar', component: EditarcarComponent, canActivate:[AuthGuard]},
+  {path:'inicio', component:IniciarsesionComponent, canActivate:[LoginGuard] },
+  {path:'registrar', component:RegistrarComponent, canActivate:[LoginGuard] },
+  {path:'personas', component: PersonasComponent, canActivate:[AuthGuard] },
+  {path:'bikes',component:BikesComponent, canActivate:[AuthGuard] },
+  {path:'cars', component: CarsComponent, canActivate:[AuthGuard] },
+  {path:'menu', component: MenuComponent, canActivate:[AuthGuard] },
+  {path:'editarbiker', component: EditarbikerComponent, canActivate:[AuthGuard] },
+  {path:'editarcar', component: EditarcarComponent, canActivate:[AuthGuard] },
   {path:'notfound', component: NotfoundComponent},
   {path:'**', redirectTo:'notfound', pathMatch:'full'}
 ];
