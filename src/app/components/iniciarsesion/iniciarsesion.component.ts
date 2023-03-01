@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/Login/log.service';
     import { catchError } from 'rxjs/operators';
@@ -14,9 +14,17 @@ import { Token } from '@angular/compiler';
   styleUrls: ['./iniciarsesion.component.css']
 })
 export class IniciarsesionComponent {
-  email: string='';
-  password: string='';
-  error: string = '';
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email
+  ]);
+
+  passwordFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  email: string = '';
+  password: string = '';
 
   constructor(private authService: LoginService, private router: Router) {}
 
@@ -43,6 +51,12 @@ export class IniciarsesionComponent {
         {
           this.authService.setToken(res);
           this.router.navigate(['/menu']);
+        }
+      },
+      (err) => {
+        if (err == 500)
+        {
+          alert("Nos encontramos en mantenimiento");
         }
       }
     );

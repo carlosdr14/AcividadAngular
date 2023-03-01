@@ -30,6 +30,12 @@ constructor(private modal: NgbModal, private carService: CarService,
   // Or 'admin', depending on the role of the user
     this.carService.getCars(token).subscribe((res) => {
         this.car
+    },
+    (err) => {
+      if (err == 500)
+      {
+        alert("Nos encontramos en mantenimiento");
+      }
     });
   
   }

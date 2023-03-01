@@ -43,7 +43,7 @@ export class PersonaService {
   }
 
 
-  addPersona(persona: PersonaM): Observable<PersonaM> {
+  addPersona(persona: PersonaM): Observable<any> {
     return this.http.post<PersonaM>(this.crearPersona, persona)
       .pipe(catchError(this.handleError))
       .pipe(tap(() => {
@@ -71,11 +71,14 @@ export class PersonaService {
       .pipe(tap(() => {
         this._refresh$.next();
       }));
-      
+
   }
 
-  deletePersona(persona: any): Observable<any> {
-    return this.http.delete<any>(this.eliminarPersona + persona.id)
+  deletePersona(id:number, token:string): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.delete<any>(`${this.apiUrl}/clients/${id}`, { headers })
       .pipe(retry(3), catchError(this.handleError));
   }
 

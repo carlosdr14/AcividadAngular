@@ -48,10 +48,18 @@ export class RegistrarComponent {
     
     this.persona.addPersona(form).subscribe(
       (res) => {
+
         alert("Successful");
       },
       (err) => {
-        alert(err);
+        if (err.status == 422)
+        {
+          alert("El correo ya existe");
+        }
+        if (err.status == 500)
+        {
+          alert("Nos encontramos en mantenimiento");
+        }
       }
     );
 
@@ -86,7 +94,7 @@ export class RegistrarComponent {
         alert("Successful");
       },
       (err) => {
-        alert(err);
+        alert("codigo incorrecto");
       }
     );
 
