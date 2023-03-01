@@ -12,7 +12,7 @@ export class EditarcarComponent {
   id: number=0;
   brand: string='';
   model: string='';
-  year: number=0;
+  year: string='';
   color: string='';
 
   constructor(private carservice:CarService, private router: Router) {}

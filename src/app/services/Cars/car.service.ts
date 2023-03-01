@@ -55,25 +55,32 @@ export class CarService {
       .pipe(retry(3), catchError(this.handleError));
   }
 
-  updateCar(car:CarM ): Observable<CarM> {
-    return this.http.put<CarM>(this.modificarCar + car.id, car)
+  updateCar(id:number,car:CarM ,token:string): Observable<CarM> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+
+    });
+    return this.http.put<CarM>( `${this.apiUrl}/cars/${id}`, car, { headers })
       .pipe(catchError(this.handleError))
       .pipe(tap(() => {
         this._refresh$.next();
       }));
   }
 
-  deleteCar(car:CarM): Observable<CarM> {
-    return this.http.delete<CarM>(this.eliminarCar + car.id)
+  deleteCar( token:string,id:number): Observable<CarM> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.delete<CarM>(`${this.apiUrl}/cars/${id}`, { headers })
       .pipe(retry(3), catchError(this.handleError));
   }
 
-  getCars(token: string): Observable<CarM[]> {
+  getCars(token: string): Observable<any> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
   
     });
-    return this.http.get<CarM[]>(`${this.apiUrl}/cars`, { headers });
+    return this.http.get<any>(`${this.apiUrl}/cars`, { headers });
   }
 
 }

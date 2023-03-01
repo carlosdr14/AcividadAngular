@@ -1,9 +1,9 @@
 export interface CarM
 {
-    id: number;
+    id?: number;
     brand:string;
     model:string;
-    year:number;
+    year:string;
     color:string;
     
 }

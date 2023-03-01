@@ -75,15 +75,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr *ngFor="let car of cars">
-                        <th scope="row">{{car.id}}</th>
-                        <td>{{car.marca}}</td>
-                        <td>{{car.modelo}}</td>
-                        <td>{{car.color}}</td>
-                        <td>{{car.anio}}</td>
-                        <td><button type="button" class="btn btn-primary">Editar</button></td>
-                        <td><button type="button" class="btn btn-danger">Eliminar</button></td>
-                    </tr> -->
                     <tr>
                         <tr *ngFor="let car of cars  ">
                             <th scope="row">{{ car.id }}</th>
@@ -91,9 +82,9 @@
                             <td>{{ car.model }}</td>
                             <td>{{ car.color }}</td>
                             <td>{{ car.year }}</td>
-                        <td><button type="button" class="btn btn-primary" (click)="EditarC()">Editar</button>
+                        <td><button type="button" class="btn btn-primary" (click)="EditarC(car)">Editar</button>
                         </td>
-                        <td><button type="button" class="btn btn-danger" (click)="EliminarC()">Eliminar</button></td>
+                        <td><button type="button" class="btn btn-danger" (click)="EliminarC(car)">Eliminar</button></td>
                 </tbody>
             </table>
         </div>
@@ -112,34 +103,31 @@
         </button>
     </div>
     <div class="modal-body">
-        <form>
+        <form (ngSubmit)="abrirC()" #form="ngForm">
             <!-- marca -->
             <div class="form-outline mb-4">
                 <label for="form-label">Marca</label>
-                <input type="text" id="email" class="form-control" placeholder="Actualiza modelo" />
+                <input [(ngModel)]="brand" type="text" id="brand" name="brand" class="form-control" placeholder="Actualiza modelo" />
             </div>
             <!-- modelo -->
             <div class="form-outline mb-4">
                 <label for="form-label">Modelo</label>
-                <input type="text" id="email" class="form-control" placeholder="Actualiza marca" />
+                <input  [(ngModel)]="model" type="text" id="model" name="model" class="form-control" placeholder="Actualiza marca" />
             </div>
             <!-- color -->
             <div class="form-outline mb-4">
                 <label for="form-label">Color</label>
-                <input type="text" id="email" class="form-control" placeholder="Actualiza color" />
+                <input [(ngModel)]="color" type="text" id="color"  name="color" class="form-control" placeholder="Actualiza color" />
             </div>
             <!-- año -->
             <div class="form-outline mb-4">
                 <label for="form-label">Año</label>
-                <input type="text" id="email" class="form-control" placeholder="Actualiza año" />
+                <input [(ngModel)]="year"  type="year" id="year" name="year" class="form-control" placeholder="Actualiza año" />
             </div>
-
+            <button type="submit" class="btn btn-primary btn-block">actualizar</button>
         </form>
     </div>
-    <div class="modal-footer">
-        <button class="btn btn-outline-dark" type="button" (click)="modal.close()">Cerrar</button>
-        <button type="submit" class="btn btn-primary btn-block">actualizar</button>
-    </div>
+ 
 </ng-template>
 <div  class="left-div">
     <button type="submit" class="btn btn-warning float-right custom-margin" routerLink="/editarcar">Registrar
@@ -150,23 +138,5 @@
 
 
 <!-- modal para eliminar datos -->
-<ng-template #eliminar let-modal>
 
-    <div class="modal-content text-center mb-">
-
-        <div class="modal-header x d-flex justify-content-center">
-            <h1 class="heading" id="color-h3">estas seguro?</h1>
-        </div>
-
-        <div class="modal-body">
-            <h3>esta accion no se podra deshacer</h3>
-        </div>
-
-        <div class="modal-footer flex-center">
-            <a href="" class="btn  btn-outline-danger">Yes</a>
-            <a type="button" class="btn  btn-danger waves-effect" (click)="modal.close()">No</a>
-        </div>
-    </div>
-
-</ng-template>
 <!-- fin del modal -->
