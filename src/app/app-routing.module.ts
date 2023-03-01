@@ -6,12 +6,10 @@ import { IniciarsesionComponent } from './components/iniciarsesion/iniciarsesion
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { PersonasComponent } from './components/personas/personas.component';
 import { RegistrarComponent } from './components/registrar/registrar.component';
-import {EditarpersonaComponent} from './components/editarpersona/editarpersona.component';
+
 import {EditarbikerComponent} from './components/editarbiker/editarbiker.component';
 import {EditarcarComponent} from './components/editarcar/editarcar.component';
-import { EliminarpersonaComponent } from './components/eliminarpersona/eliminarpersona.component';
-import { EliminarbikerComponent } from './components/eliminarbiker/eliminarbiker.component';
-import { EliminarcarComponent } from './components/eliminarcar/eliminarcar.component';
+
 import { MenuComponent } from './components/menu/menu.component';
 import { LoginGuard } from './guards/login/login.guard';
 import { AuthGuard } from './guards/Usuario/usuario-activo.guard';
@@ -25,6 +23,8 @@ const routes: Routes = [
   {path:'bikes',component:BikesComponent},
   {path:'cars', component: CarsComponent},
   {path:'menu', component: MenuComponent, canActivate:[AuthGuard]},
+  {path:'editarbiker', component: EditarbikerComponent, canActivate:[AuthGuard]},
+  {path:'editarcar', component: EditarcarComponent, canActivate:[AuthGuard]},
   {path:'notfound', component: NotfoundComponent},
   {path:'**', redirectTo:'notfound', pathMatch:'full'}
 ];

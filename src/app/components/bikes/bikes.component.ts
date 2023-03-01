@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BikerService } from 'src/app/services/Bikers/bike.service';
-import { Route, Router } from '@angular/router';
+
 import { BikeM } from 'src/app/Models/biker.model';
 import { LoginService } from 'src/app/services/Login/log.service';
 import { Location } from '@angular/common';
