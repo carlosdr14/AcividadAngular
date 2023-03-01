@@ -12,11 +12,11 @@ import {  HttpHeaders } from '@angular/common/http';
 export class CarService {
   urlapi = environment.URL_API;
   private _refresh$ = new Subject<void>();
-  private obtenercar = this.urlapi + "/bikes"
-  private crearCar = this.urlapi + "/bikes"
-  private obtenercarid = this.urlapi + "/bikes/{id}"
-  private modificarCar = this.urlapi + "/bikes/{id}"
-  private eliminarCar = this.urlapi + "/bikes/{id}"
+  private obtenercar = this.urlapi + "/cars"
+  private crearCar = this.urlapi + "/cars"
+  private obtenercarid = this.urlapi + "/cars/{id}"
+  private modificarCar = this.urlapi + "/cars/{id}"
+  private eliminarCar = this.urlapi + "/cars/{id}"
 
   
 
@@ -28,7 +28,7 @@ export class CarService {
     } else {
       console.error('El backend devolvió el código ${error.status}, el cuerpo era:', error.error)
     }
-    return throwError(() => new Error('Algo malo sucedió; por favor, inténtelo de nuevo más tarde.'));
+    return throwError(() => new Error('Algo malo sucedió; por favor, inténtelo de nuevo más tarde.'));
   }
 
   constructor(private http: HttpClient) { }
@@ -36,7 +36,6 @@ export class CarService {
 
   get refresh$() { return this._refresh$ }
 
-  
   addCar(car: CarM): Observable<CarM> {
     return this.http.post<CarM>(this.crearCar, car)
       .pipe(catchError(this.handleError))
@@ -44,6 +43,7 @@ export class CarService {
         this._refresh$.next();
       }));
   }
+  
 
   getOneCar(id: number): Observable<CarM> {
     return this.http.get<CarM>(this.obtenercarid + id)
