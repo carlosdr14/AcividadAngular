@@ -43,7 +43,8 @@
         </div>
 
         <form class="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0">
-            <i class="fas fa-sign-out-alt fa-lg mb-1"></i> <button class="btn btn-success" type="button" data-mdb-ripple-color="dark" (click)="cerrarSesion()">cerrar Sesion </button>
+            <i class="fas fa-sign-out-alt fa-lg mb-1"></i> <button class="btn btn-success" type="button"
+                data-mdb-ripple-color="dark" (click)="cerrarSesion()">cerrar Sesion </button>
         </form>
 
     </div>
@@ -90,14 +91,17 @@
                             <ng-container *ngIf="persona.active == false">No</ng-container>
                         </td>
                         <td><button type="button" class="btn btn-primary" (click)="abrirModal(persona)"
-                                *ngIf="persona.role==2" disabled >Editar</button>
-                                <button type="button" class="btn btn-primary" (click)="abrirModal(persona)"
-                                *ngIf="persona.role==1"  >Editar</button>
-                                <button type="button" class="btn btn-primary" (click)="abrirModal(persona)"
-                                *ngIf="persona.role==3"  >Editar</button>
+                                *ngIf="persona.role==2" disabled>Editar</button>
+                            <button type="button" class="btn btn-primary" (click)="abrirModal(persona)"
+                                *ngIf="persona.role==1">Editar</button>
+                            <button type="button" class="btn btn-primary" (click)="abrirModal(persona)"
+                                *ngIf="persona.role==3">Editar</button>
                         </td>
-                        <td><button type="button" class="btn btn-danger" (click)="EliminarP(persona)" *ngIf="persona.role==2"
-                                disabled>Eliminar</button>
+                        <td>
+                            <button type="button" class="btn btn-danger" (click)="EliminarP(persona)"
+                                *ngIf="persona.role !== 2">Eliminar</button>
+                            <!-- <button type="button" class="btn btn-danger" (click)="EliminarP(persona)"
+                                *ngIf="persona.role==2" disabled>Eliminar</button> -->
                             <button type="button" class="btn btn-danger" (click)="EliminarP(persona)"
                                 *ngIf="persona.role==1">Eliminar</button>
                             <button type="button" class="btn btn-danger" (click)="EliminarP(persona)"
@@ -126,11 +130,13 @@
             <hr>
             <div class="form-outline mb-4">
                 <label class="form-label" for="name">Nombre</label>
-                <input [(ngModel)]="name" name="name" type="text" id="name" class="form-control" placeholder="Ingrese nombre" required />
+                <input [(ngModel)]="name" name="name" type="text" id="name" class="form-control"
+                    placeholder="Ingrese nombre" required />
             </div>
             <div class="form-outline mb-4">
                 <label class="form-label" for="phone">Teléfono</label>
-                <input [(ngModel)]="phone" name="phone" type="text" id="phone" class="form-control" placeholder="Ingrese teléfono" required />
+                <input [(ngModel)]="phone" name="phone" type="text" id="phone" class="form-control"
+                    placeholder="Ingrese teléfono" required />
             </div>
             <label for="">Role</label>
             <select [(ngModel)]="role" name="role" id="role" class="form-control" required>
@@ -148,7 +154,7 @@
             <br>
             <button type="submit" class="btn btn-primary btn-block">actualizar</button>
         </form>
-        
+
 
     </div>
     <div class="modal-footer">
