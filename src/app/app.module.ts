@@ -20,6 +20,9 @@ import { EliminarcarComponent } from './components/eliminarcar/eliminarcar.compo
 import { MenuComponent } from './components/menu/menu.component';
 import { PersonaService } from './services/Personas/persona.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/TokenModificado/auth-interceptor.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 
 
@@ -47,7 +50,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [PersonaService,Location],
+  providers: [PersonaService,Location, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
