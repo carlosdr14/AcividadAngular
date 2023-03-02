@@ -9,23 +9,39 @@
             <h1><b>vehiculos</b></h1>
             <hr>
             <br>
-            <table class="table table-dark table-hover">
-                <thead>
+            <div class="text-center">
+                <table class="table table-hover">
+                  <thead>
                     <tr>
-                        
-                        <th scope="col">Cars</th>
-                        <th scope="col">Bikes</th>
+                      <th>Cars</th>
+                      <th>Bikes</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <!-- <tr *ngFor="let  of ">
-                        <td>{{ car.model }}</td>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <table>
+                          <tbody>
+                            <tr *ngFor="let car of cars">
+                              <td class="text-center">{{car.brand}} {{car.model}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                      <td>
+                        <table>
+                          <tbody>
+                            <tr *ngFor="let bike of bikes">
+                              <td class="text-center">{{bike.brand}} {{bike.model}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
                     </tr>
-                    <tr *ngFor="let  of ">
-                        <td>{{ bike.model }}</td>
-                    </tr> -->
-                </tbody>
-            </table>
+                  </tbody>
+                </table>
+              </div>
+              
         </div>
         <div class="col">
 
