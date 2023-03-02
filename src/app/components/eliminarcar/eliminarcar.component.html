@@ -19,20 +19,20 @@
 
           <ng-container *ngFor="let car of cars">
             <ng-container *ngFor="let id of carss">
-              <ng-container *ngIf="car.id === id.id">
+              <ng-container *ngIf="car.car_id== id.id">
                 <tr>
-                  <td>{{car.brand}}</td>
-                  <td></td>
+                  <td>{{id.brand}}</td>
+                  <td> </td>
                 </tr>
               </ng-container>
             </ng-container>
           </ng-container>
           <ng-container *ngFor="let bike of bikes">
             <ng-container *ngFor="let id of bikess">
-              <ng-container *ngIf="bike.id === id.id">
+              <ng-container *ngIf="bike.bike_id == id.id">
                 <tr>
                   <td></td>
-                  <td>{{bike.brand}}</td>
+                  <td>{{id.brand}}</td>
                 </tr>
               </ng-container>
             </ng-container>
