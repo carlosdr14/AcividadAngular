@@ -83,4 +83,22 @@ export class CarService {
     return this.http.get<any>(`${this.apiUrl}/cars`, { headers });
   }
 
+  Car(user_id: number, car_id:number,token:string): Observable<any> {
+    const form= 
+    {
+      user_id : user_id,
+      car_id: car_id
+    }
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    console.log("FORMULARIO DEL CARRO",form)
+
+   
+    return this.http.post<any>(`${this.apiUrl}/CAR`,form, {headers})
+      .pipe(catchError(this.handleError))
+      .pipe(tap(() => {
+        this._refresh$.next();
+      }));
+  }
 }

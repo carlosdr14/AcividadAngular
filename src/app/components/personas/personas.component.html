@@ -103,11 +103,11 @@
                             <button type="button" class="btn btn-info" *ngIf="persona.role==1" routerLink="/eliminarcar">vehiculos</button>
                             <button type="button" class="btn btn-info" *ngIf="persona.role==3" routerLink="/eliminarcar">vehiculos</button>
                         </td>
-                        <td><button type="button" class="btn btn-warning" (click)="openModal(registarv, persona)"
+                        <td><button type="button" class="btn btn-warning" (click)="openModal( persona)"
                                 *ngIf="persona.role==2" hidden>Registrar</button>
-                            <button type="button" class="btn btn-warning" (click)="openModal(registarv, persona)"
+                            <button type="button" class="btn btn-warning" (click)="openModal( persona)"
                                 *ngIf="persona.role==1">Registrar </button>
-                            <button type="button" class="btn btn-warning" (click)="openModal(registarv, persona)"
+                            <button type="button" class="btn btn-warning" (click)="openModal(persona)"
                                 *ngIf="persona.role==3">Registrar </button>
                         <td>
                             <button type="button" class="btn btn-danger" (click)="EliminarP(persona)"
@@ -199,7 +199,7 @@
 </ng-template>
 <!-- fin del modal -->
 
-<ng-template #registarv let-modal>
+<ng-template #vehicle let-modal>
     <div class="modal-header">
         <h4 class="modal-title">Añadir vehiculos</h4>
         <button class="close" type="button" (click)="modal.dismiss()">
@@ -208,41 +208,31 @@
     </div>
     <div class="modal-body">
 
-        <form>
+        <form (ngSubmit)="guardar()" #form="ngForm">
             <hr>
             <div class="form-outline mb-4">
                 <label class="form-label" for="name">Cars</label>
                 <br>
-                <select class="custom-select" id="inputGroupSelect01">
-                    <option selected>seleccionar</option>
-                    <option>
-                        <tr *ngFor="let car of cars">
-                            <td>
-                                {{ car.brand }},{{ car.model }}
-                            </td>
+                <select [(ngModel)]="car_id"  name="car_id" id="car_id" class="form-control" required>
+                    <option value="">...</option>
+                    <option *ngFor="let car of cars" value={{car.id}}>{{car.brand}} {{car.model}}</option>
                     
                 </select>
             </div>
-        </form>
-        <hr>
-        <form>
-            <div class="form-outline mb-4">
-                <label class="form-label" for="name">Cars</label>
+        
+            
+                <label class="form-label" for="name">Bike</label>
                 <br>
-                <select class="custom-select" id="inputGroupSelect01">
-                    <option selected>seleccionar</option>
-                    <option>
-                        <tr *ngFor="let bike of bikes">
-                            <td>
-                                {{ bike.brand }},{{ bike.model }}
-                            </td>
-                    </option>
-
+                <select [(ngModel)]="bike_id"  name="bike_id" id="bike_id" class="form-control" required>
+                    <option value="">...</option>
+                    <option  *ngFor="let bike of bikes" value={{bike.id}}>{{bike.brand}} {{ bike.model}}</option>
+                    
                 </select>
-            </div>
+            <br>
+            <button type="submit" class="btn btn-primary btn-block">añadir</button>
         </form>
         <hr>
-        <button type="submit" class="btn btn-primary btn-block">añadir</button>
+      
     </div>
     <div class="modal-footer">
         <button class="btn btn-outline-dark" type="button" (click)="modal.close()">Cerrar</button>

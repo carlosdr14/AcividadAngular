@@ -6,8 +6,6 @@ import { PersonaM } from 'src/app/Models/persona.model';
 import { Location } from '@angular/common';
 import { Route, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/Login/log.service';
-
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BikeM } from 'src/app/Models/biker.model';
 import { BikerService } from 'src/app/services/Bikers/bike.service';
 import { CarM } from 'src/app/Models/car.model';
@@ -24,6 +22,7 @@ export class PersonasComponent {
 
     @ViewChild('contenido') contenido: any;
     @ViewChild('eliminar') eliminar: any;
+    @ViewChild('vehicle') vehicle:any;
 
 
     bikes: BikeM[] = [];
@@ -32,6 +31,7 @@ export class PersonasComponent {
     model: string = '';
     year: string = '';
     color: string = '';
+    car_id:number=0;
 
     cars: CarM[] = [];
 
@@ -41,6 +41,8 @@ export class PersonasComponent {
     phone: string = '';
     role: string = '';
     active: string = '';
+    bike_id:number=0;
+
     constructor(private modalService: NgbModal, private personaService: PersonaService, private fb: FormBuilder,
         private location: Location, private router: Router, private authService: LoginService, private bikeService: BikerService, private carservice:CarService) {
 
@@ -117,8 +119,66 @@ export class PersonasComponent {
         );
     }
 
-    openModal(template: any, persona: any) {
-        const modalRef = this.modalService.open(template);
-        modalRef.componentInstance.persona = persona;
+    openModal( persona: any) {
+        this.modalService.open(this.vehicle, { centered: true });
+       
+        const token = localStorage.getItem('token') ?? '';
+        console.log(token);
+      
+      // Or 'admin', depending on the role of the user
+        this.bikeService.getBikes(token).subscribe((res) => {
+            this.bikes = res;
+            console.log("FORM",res);
+        });
+        
+        console.log(token);
+      
+      // Or 'admin', depending on the role of the user
+        this.carservice.getCars(token).subscribe((res) => {
+            this.cars = res;
+            console.log("FORM",res);
+        });
+
+        this.car_id= this.car_id;
+        console.log(this.car_id)
+        this.bike_id= this.bike_id;
+        console.log(this.bike_id)
+        this.id=persona.id
+
     }
+    guardar() {
+        console.log("Car ID:", this.car_id);
+        console.log("Bike ID:", this.bike_id);
+        console.log("ID",this.id)
+        const token = localStorage.getItem('token') ?? '';
+         this.carservice.Car(this.id,this.car_id,token).subscribe((res)=>
+         {
+            if (res ==200)
+            {
+                alert("Agregados con exito")
+            }
+            else 
+            {
+                alert ("Upps hubo algun error al registrar Car")
+                console.log(res)
+            }
+         });
+        
+         this.bikeService.BIke(this.id,this.bike_id,token).subscribe((res)=>
+         {
+            if (res ==200)
+            {
+                alert("Agregados con exito")
+            }
+            else 
+            {
+                alert ("Upps hubo algun error al registrar bike")
+                console.log(res)
+            }
+         });
+
+        // Aqui você pode adicionar código para enviar os valores selecionados para um servidor ou fazer outras operações com eles
+      }
+      
 }
+

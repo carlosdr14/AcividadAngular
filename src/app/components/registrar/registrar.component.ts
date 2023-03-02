@@ -1,11 +1,11 @@
 
 import { Component, ViewChild } from '@angular/core';
-import { Route } from '@angular/router';
+import { Route, RouterLink } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PersonaService } from 'src/app/services/Personas/persona.service';
 import { PersonaM } from 'src/app/Models/persona.model';
 import { ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrar',
@@ -26,7 +26,7 @@ export class RegistrarComponent {
   
   @ViewChild('contenido') contenido: any;
 
-  constructor(private modal: NgbModal, private persona: PersonaService, private activatedRoute: ActivatedRoute,) {
+  constructor(private modal: NgbModal, private persona: PersonaService, private activatedRoute: ActivatedRoute,private router: Router) {
     const id = this.activatedRoute.snapshot.paramMap.get('id') as string;
 
   }
@@ -62,10 +62,7 @@ export class RegistrarComponent {
         {
           alert("Se ha enviado un correo para activar la cuenta");
         }
-      },
-      (err) => {
-       
-        if (err.status == 500)
+        if (res == 500)
         {
           alert("Nos encontramos en mantenimiento");
         }
@@ -101,9 +98,12 @@ export class RegistrarComponent {
     this.persona.activarCliente(this.id,Number( this.codigo)).subscribe(
       (res) => {
         alert("Successful");
+        this.router.navigate(['/inicio']);
+      
       },
       (err) => {
         alert("codigo incorrecto");
+        this.modal.open(this.contenido);
       }
     );
 
