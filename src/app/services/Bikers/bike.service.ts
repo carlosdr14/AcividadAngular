@@ -86,6 +86,13 @@ export class BikerService {
     });
     return this.http.get<BikeM[]>(`${this.apiUrl}/bikes`, { headers });
   }
+  BikeUser(token: string,id:number): Observable<BikeM[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<BikeM[]>(`${this.apiUrl}/BikeUser/${id}`, { headers });
+  }
 
   BIke(user_id: number,bike_id:number,token:string): Observable<any> {
 

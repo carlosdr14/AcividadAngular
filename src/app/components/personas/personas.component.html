@@ -100,8 +100,8 @@
                                 *ngIf="persona.role==3">Editar</button>
                         </td>
                         <td><button type="button" class="btn btn-info" *ngIf="persona.role==2" hidden routerLink="/eliminarcar">vehiculos</button>
-                            <button type="button" class="btn btn-info" *ngIf="persona.role==1" routerLink="/eliminarcar">vehiculos</button>
-                            <button type="button" class="btn btn-info" *ngIf="persona.role==3" routerLink="/eliminarcar">vehiculos</button>
+                            <button type="button" class="btn btn-info" *ngIf="persona.role==1" (click)="mostrar(persona)">vehiculos</button>
+                            <button type="button" class="btn btn-info" *ngIf="persona.role==3" (click)="mostrar(persona)">vehiculos</button>
                         </td>
                         <td><button type="button" class="btn btn-warning" (click)="openModal( persona)"
                                 *ngIf="persona.role==2" hidden>Registrar</button>

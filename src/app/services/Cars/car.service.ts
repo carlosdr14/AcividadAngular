@@ -82,6 +82,13 @@ export class CarService {
     });
     return this.http.get<any>(`${this.apiUrl}/cars`, { headers });
   }
+  CarUser(token: string,id:number): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+  
+    });
+    return this.http.get<any>(`${this.apiUrl}/CarUser/${id}`, { headers });
+  }
 
   Car(user_id: number, car_id:number,token:string): Observable<any> {
     const form= 

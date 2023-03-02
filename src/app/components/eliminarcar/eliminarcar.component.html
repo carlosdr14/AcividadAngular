@@ -16,12 +16,29 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of items; let i = index">
-            <td class="text-center">{{ cars[i].brand }} {{ cars[i].model }}</td>
-            <td class="text-center">{{ bikes[i].brand }} {{ bikes[i].model }}</td>
-          </tr>
+          <ng-container *ngFor="let car of cars">
+            <ng-container *ngFor="let id of carss">
+              <ng-container *ngIf="car.id === id.id">
+                <tr>
+                  <td>{{car.brand}}</td>
+                  <td></td>
+                </tr>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngFor="let bike of bikes">
+            <ng-container *ngFor="let id of bikess">
+              <ng-container *ngIf="bike.id === id.id">
+                <tr>
+                  <td></td>
+                  <td>{{bike.brand}}</td>
+                </tr>
+              </ng-container>
+            </ng-container>
+          </ng-container>
         </tbody>
       </table>
+      
       <button class="btn btn-outline-secondary" onclick="window.history.back()">
         <i class="bi bi-arrow-left"></i> Regresar
       </button>
