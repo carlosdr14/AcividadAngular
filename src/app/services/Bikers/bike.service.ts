@@ -87,5 +87,23 @@ export class BikerService {
     return this.http.get<BikeM[]>(`${this.apiUrl}/bikes`, { headers });
   }
 
+  BIke(user_id: number,bike_id:number,token:string): Observable<any> {
+
+    const form= 
+    {
+      user_id : user_id,
+      bike_id: bike_id
+    }
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    console.log("FORMULARIO DEL LA BIKE",form)
+    return this.http.post<any>(`${this.apiUrl}/BIKE`,form ,{ headers })
+      .pipe(catchError(this.handleError))
+      .pipe(tap(() => {
+        this._refresh$.next();
+      }));
+  }
 
 }
