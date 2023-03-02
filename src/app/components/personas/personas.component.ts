@@ -179,6 +179,11 @@ export class PersonasComponent {
 
         // Aqui você pode adicionar código para enviar os valores selecionados para um servidor ou fazer outras operações com eles
       }
-      
+      mostrar(persona: any) {
+
+        console.log("id", persona.id);
+        this.router.navigate(['/eliminarcar'], { queryParams: { id: persona.id } });
+
+      }
 }
 
