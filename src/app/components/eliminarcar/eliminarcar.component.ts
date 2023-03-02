@@ -17,8 +17,7 @@ export class EliminarcarComponent {
 
   cars: CarM[]=[]
   bikes:BikeM[]=[]
-  items = ['item 1'];
-
+  items: string[] = [];
 
   constructor(private modal: NgbModal, private carService: CarService,
     private location: Location,private router: Router,private bikeService:BikerService) { }
